@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# React + Vite
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Available Scripts
+Currently using [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) (Built on [Babel](https://babeljs.io/)) for Fast Refresh
 
-In the project directory, you can run:
+## TanStack Router
 
-### `npm start`
+The default routes of home ("/") and about ("/about") have been setup, with a root layout available in [\_\_root.tsx](src/routes/__root.jsx)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+TanStack Router was setup using this [manual setup guide](https://tanstack.com/router/v1/docs/framework/react/quick-start#manual-setup), using the file-based routing approach.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Mantine Component Library
 
-### `npm test`
+Mantine was setup using their [vite guide](https://mantine.dev/guides/vite/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+All the required stylesheets for these packages have been imported in [main.tsx](src/main.tsx), and the two required Providers for Mantine and Modals have also been setup in main.tsx.
 
-### `npm run build`
+Here is Mantines learning resource: [link](https://mantine.dev/getting-started/#learn)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Packages and dependencies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+These Mantine packages have been installed as part of this template:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. @mantine/core
+2. @mantine/hooks
+3. @mantine/dates
+4. dayjs
+5. @mantine/form
+6. @mantine/dropzone
+7. @mantine/carousel
+8. embla-carousel-react@^7.1.0
+9. @mantine/modals
+10. @mantine/spotlight
 
-### `npm run eject`
+## Supabase
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Supabase JS client has been installed as an npm package using [their guide](https://supabase.com/docs/reference/javascript/installing#install-as-package).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+And then in this project, the few boilerplate lines of code to initialize the client has been hidden away in [getSupabaseClient.js](src/supabase/getSupabaseClient.js)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Edit the 2 variables: `SUPABASE_URL` and `PUBLIC_ANON_KEY`, to match the values from your Supabase project.
