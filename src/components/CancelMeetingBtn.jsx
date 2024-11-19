@@ -46,7 +46,7 @@ const CancelMeetingButton = () => {
   const closeModal = () => setIsModalOpen(false);
   const handleConfirm = () => {
     // ---------------------------------
-    // Add cancellation logic here
+    // cancellation logic goes here (coming soon TM)
     // ---------------------------------
     closeModal();
   };
