@@ -4,5 +4,6 @@ import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/Booking_system/",
   plugins: [TanStackRouterVite(), react()],
 });

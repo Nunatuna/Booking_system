@@ -1,9 +1,12 @@
 {
   "name": "vite-react-js-tanstack-router-mantine-template",
+  "homepage": "https://Nunatuna/.github.io/Booking_system",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -22,6 +25,7 @@
     "@tanstack/react-router": "^1.79.0",
     "dayjs": "^1.11.13",
     "embla-carousel-react": "^7.1.0",
+    "gh-pages": "^6.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

@@ -6,7 +6,7 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 
-export interface RouterContext {
+export interface RouterContext extends Record<any, any>{
   supabase: any;
 }
 
