@@ -10,6 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.7.0",
+    "@fortawesome/free-brands-svg-icons": "^6.7.0",
+    "@fortawesome/free-regular-svg-icons": "^6.7.0",
+    "@fortawesome/free-solid-svg-icons": "^6.7.0",
     "@mantine/carousel": "^7.13.4",
     "@mantine/core": "^7.13.4",
     "@mantine/dates": "^7.13.4",
