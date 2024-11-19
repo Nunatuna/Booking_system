@@ -20,6 +20,7 @@ function RootRouteWithLayout() {
       <div>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
+        <Link to="/sofie">sofie test</Link>
       </div>
       <hr />
       <Outlet />
