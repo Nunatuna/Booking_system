@@ -1,4 +1,5 @@
 import { createLazyFileRoute, useRouteContext } from "@tanstack/react-router";
+// import MyBookings from "../components/MyBookings"; //Uncomment this line to see My Bookings Component
 
 export const Route = createLazyFileRoute("/")({
   component: Index,
@@ -9,8 +10,9 @@ function Index() {
   console.log(context);
 
   return (
-    <div>
+    <>
       <h3>Welcome Home!</h3>
-    </div>
+      {/* <MyBookings /> Uncomment this line to see My Bookings Component */}
+    </>
   );
 }
