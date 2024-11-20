@@ -80,18 +80,18 @@ export default function NavBar() {
         <div style={styles.child}>
           <Modal
             opened={opened}
-            onClose={close} //on-click close funktion, som er i log af div. Den lukker modal
+            onClose={close} //on-click close funktion, som er i logaf <div>. Den lukker modal
             centered //sørger for modal er centreret på skærmen
             overlayOpacity={0.5} //sørger for baggrund bliver mørkere når modal åbner op
             size="lg" // modal størrelse
-            radius="lg" // sørger for modal har runde hjørner (samme som border radius)
+            radius="lg" // sørger for modal har runde hjørner (samme som css værdien border-radius)
           >
             {/*modal content*/}
               <div>
                 <h1 style={modalStyles.header}>Er du sikker på, at du vil logge af?</h1>
                 <div style={modalStyles.buttons}>
                   <Button variant="filled" color="#748FFC" size="xl" radius="xl" onClick={close}>Luk</Button>
-                  <Button variant="filled" color="indigo" size="xl" radius="xl">Log ud</Button>
+                  <Button variant="filled" color="indigo" size="xl" radius="xl">Log af</Button>
                 </div>
               </div>
           </Modal>
