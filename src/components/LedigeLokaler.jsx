@@ -1,4 +1,8 @@
 import React from 'react';
+import CancelMeetingButton from './CancelMeetingBtn';
+import { Title } from '@mantine/core';
+import { Button } from '@mantine/core';
+
 
 function AvailableRooms() {
   const rooms = [
@@ -15,7 +19,7 @@ function AvailableRooms() {
   return (
     <div style={styles.container}>
         <div style={styles.ledigeCard}>
-      <h1 style={styles.heading}>Ledige lokaler i dag:</h1>
+        <Title style={styles.heading} order={1}>Ledige lokaler i dag: </Title>
       <div style={styles.cardContainer}>
         {rooms.map((room) => (
           <div key={room.id} style={styles.roomCard}>
@@ -23,9 +27,8 @@ function AvailableRooms() {
               <p style={styles.roomName}>{room.name}</p>
               <p style={styles.roomTime}>{room.time}</p>
             </div>
-            <button style={styles.button} onClick={() => handleBooking(room.name)}>
-              BOOK
-            </button>
+            <Button onClick={() => handleBooking(room.name)} variant="filled" color="indigo" size="sm" radius="xl">BOOK</Button>
+     
           </div>
         ))}
       </div>
@@ -35,24 +38,29 @@ function AvailableRooms() {
 }
 
 const styles = {
+  // h1: {
+  //   fontSize: '24px',
+  //   color: '#2E3A59',
+  //   marginBottom: '20px',
+  // },
   container: {
     textAlign: 'center',
     fontFamily: 'Arial, sans-serif',
 
   },
   ledigeCard: {
-    backgroundColor: '#E3F2FD',
+    backgroundColor: '#DBE4FF',
     padding: '10%',
     borderRadius: '10px',
     display: 'inline-block',
     boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
-    width: '100%',
-    minHeight: '600px',
+    width: '531px',
+    minHeight: '530px',
   
   },
   heading: {
     fontSize: '24px',
-    color: '#2E3A59',
+    color: '#364FC7',
     marginBottom: '20px',
   },
   cardContainer: {
@@ -61,7 +69,7 @@ const styles = {
     alignItems: 'center',
   },
   roomCard: {
-    backgroundColor: '#E3F2FD',
+    // backgroundColor: '#E3F2FD',
     border: '1px solid #3F51B5',
     borderRadius: '10px',
     display: 'flex',
