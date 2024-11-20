@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from "@tanstack/react-router";
-import { IconArrowLeft, IconHome, IconUser, IconLogout } from '@tabler/icons-react';
+import { IconHome, IconUser, IconLogout } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
 import { Modal, Button } from '@mantine/core';
 
 export default function NavBar() {
-  
   //stylesheet til navbar
   const styles = {
     container: {
