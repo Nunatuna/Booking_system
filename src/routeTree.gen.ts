@@ -17,6 +17,7 @@ import { Route as rootRoute } from './routes/__root'
 // Create Virtual Routes
 
 const SofieLazyImport = createFileRoute('/sofie')()
+const PhilipLazyImport = createFileRoute('/philip')()
 const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
 
@@ -27,6 +28,12 @@ const SofieLazyRoute = SofieLazyImport.update({
   path: '/sofie',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/sofie.lazy').then((d) => d.Route))
+
+const PhilipLazyRoute = PhilipLazyImport.update({
+  id: '/philip',
+  path: '/philip',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/philip.lazy').then((d) => d.Route))
 
 const AboutLazyRoute = AboutLazyImport.update({
   id: '/about',
@@ -58,6 +65,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutLazyImport
       parentRoute: typeof rootRoute
     }
+    '/philip': {
+      id: '/philip'
+      path: '/philip'
+      fullPath: '/philip'
+      preLoaderRoute: typeof PhilipLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/sofie': {
       id: '/sofie'
       path: '/sofie'
@@ -73,12 +87,14 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
+  '/philip': typeof PhilipLazyRoute
   '/sofie': typeof SofieLazyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
+  '/philip': typeof PhilipLazyRoute
   '/sofie': typeof SofieLazyRoute
 }
 
@@ -86,27 +102,30 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
+  '/philip': typeof PhilipLazyRoute
   '/sofie': typeof SofieLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/sofie'
+  fullPaths: '/' | '/about' | '/philip' | '/sofie'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/sofie'
-  id: '__root__' | '/' | '/about' | '/sofie'
+  to: '/' | '/about' | '/philip' | '/sofie'
+  id: '__root__' | '/' | '/about' | '/philip' | '/sofie'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   AboutLazyRoute: typeof AboutLazyRoute
+  PhilipLazyRoute: typeof PhilipLazyRoute
   SofieLazyRoute: typeof SofieLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   AboutLazyRoute: AboutLazyRoute,
+  PhilipLazyRoute: PhilipLazyRoute,
   SofieLazyRoute: SofieLazyRoute,
 }
 
@@ -122,6 +141,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/about",
+        "/philip",
         "/sofie"
       ]
     },
@@ -130,6 +150,9 @@ export const routeTree = rootRoute
     },
     "/about": {
       "filePath": "about.lazy.jsx"
+    },
+    "/philip": {
+      "filePath": "philip.lazy.jsx"
     },
     "/sofie": {
       "filePath": "sofie.lazy.jsx"

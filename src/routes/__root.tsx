@@ -18,9 +18,11 @@ function RootRouteWithLayout() {
   return (
     <>
       <div>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/sofie">sofie test</Link>
+        <Link to="/">Home  </Link>
+        <Link to="/about">About  </Link>
+        <Link to="/sofie">sofie test  </Link>
+        <Link to="/philip">Philip test  </Link>
+      
       </div>
       <hr />
       <Outlet />
