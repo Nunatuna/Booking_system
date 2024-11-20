@@ -1,76 +1,60 @@
+import { getSupabaseClient } from "../supabase/getSupabaseClient";
+import PropTypes from "prop-types";
 import { useState } from "react";
-import { Button } from '@mantine/core';
+import { Button, Modal, Group, Text } from "@mantine/core";
 
-// Style Constants
-const buttonStyle = {
-  marginLeft: "auto",
-  zIndex: "1",
-};
+const CancelMeetingBtn = ({ roomId }) => {
+  const [loading, setLoading] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
-const overlayStyle = {
-  position: "fixed",
-  top: "0",
-  left: "0",
-  width: "100%",
-  height: "100%",
-  backgroundColor: "rgba(0, 0, 0, 0.5)",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  zIndex: "1000",
-};
+  const handleCancel = async () => {
+    setLoading(true);
+    const supabase = getSupabaseClient();
 
-const modalStyle = {
-  backgroundColor: "white",
-  padding: "20px",
-  borderRadius: "10px",
-  textAlign: "center",
-  boxShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
-  width: "90%",
-  maxWidth: "400px",
-};
+    // Delete the meeting room reservation from the Supabase table
+    const { error } = await supabase
+      .from("MeetingRooms") // Table name
+      .delete()
+      .eq("id", roomId); // Match the room ID
 
-const headerStyle = {
-  color: "#364FC7",
-};
+    if (error) {
+      console.error("Error deleting the booking:", error);
+    } else {
+      // Optionally refresh the page or trigger a state update in the parent component
+      window.location.reload(); // Replace with a state update for better user experience
+    }
 
-const actionsStyle = {
-  display: "flex",
-  justifyContent: "space-around",
-  marginTop: "20px",
-};
-
-const CancelMeetingButton = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-  const handleConfirm = () => {
-    // ---------------------------------
-    // cancellation logic goes here (coming soon TM)
-    // ---------------------------------
-    closeModal();
+    setLoading(false);
+    setModalOpen(false); // Close the modal after completion
   };
 
   return (
     <>
-      {/* Cancel Button */}
-      <Button variant="filled" onClick={openModal} color="#364FC7" radius="xl" style={buttonStyle}>Cancel Booking</Button>
+      {/* Opens modal */}
+      <Button style={{ marginLeft: "auto" }} onClick={() => setModalOpen(true)} disabled={loading} variant="filled" color="#364FC7" radius="xl">Cancel Booking</Button>
 
       {/* Confirmation Modal */}
-      {isModalOpen && (
-        <div style={overlayStyle}>
-          <div style={modalStyle}>
-            <h2 style={headerStyle}>Confirm Cancellation</h2>
-            <p>Are you sure you want to cancel this booking?</p>
-            <div style={actionsStyle}>
-              <Button onClick={closeModal} variant="filled" color="#748FFC" radius="xl">No, Go Back</Button>
-              <Button onClick={handleConfirm} variant="filled" color="#364FC7" radius="xl">Yes, Cancel</Button>
-            </div>
-          </div>
-        </div>
-      )}
+      <Modal opened={modalOpen} onClose={() => setModalOpen(false)} title="Cancel Booking" centered>
+
+        <Text style={{ marginBottom: "20px" }}>Are you sure you want to cancel this booking?</Text>
+
+        <Group justify="space-between" grow>
+
+          {/* Closes modal */}
+          <Button variant="default" onClick={() => setModalOpen(false)} disabled={loading}>No, Keep It</Button>
+          
+          {/* Deletes Booking */}
+          <Button onClick={handleCancel} disabled={loading} color="#364FC7" variant="filled">Cancel Booking</Button>
+        </Group>
+
+      </Modal>
     </>
   );
 };
 
-export default CancelMeetingButton;
+// Prop type validation
+CancelMeetingBtn.propTypes = {
+  roomId: PropTypes.number.isRequired, // Ensures roomId is a required number
+};
+
+export default CancelMeetingBtn;

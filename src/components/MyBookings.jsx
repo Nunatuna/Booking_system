@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getSupabaseClient } from "../supabase/getSupabaseClient";
 import Spinner from './Spinner';
 import CancelMeetingBtn from './CancelMeetingBtn';
+import { Group } from "@mantine/core";
 
 
 // CSS styles
@@ -51,10 +52,6 @@ const roomItemsStyle = {
     borderRadius: "32px",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
     marginBottom: "15px",
-};
-
-const roomItemStyle = {
-    width: "100%",
 };
 
 const roomNameLabelStyle = {
@@ -115,18 +112,18 @@ const MyBookings = () => {
         <h3 style={headerStyle}>My Bookings</h3>
         <div style={roomsStyle}>
             {rooms.length > 0 ? (
-                <div style={roomItemStyle}>
-                {rooms.map((room) => (
-                    <p key={room.id} style={roomItemsStyle}>
-                        <div>
-                            <p style={roomNameLabelStyle}><span >{room.Room_name}</span></p>
-                            <p style={roomLabelStyle}><span>{formatDateTime(room.Start_time)} - {formatDateTime(room.End_time)}</span></p>
-                        </div>
-                        <CancelMeetingBtn roomId={room.id} />
-                    </p>
-                    
-                ))}
-                </div>
+                <Group justify="space-between" gap="xs">
+                    {rooms.map((room) => (
+                        <p key={room.id} style={roomItemsStyle}>
+                            <div>
+                                <p style={roomNameLabelStyle}><span >{room.Room_name}</span></p>
+                                <p style={roomLabelStyle}><span>{formatDateTime(room.Start_time)} - {formatDateTime(room.End_time)}</span></p>
+                            </div>
+                            <CancelMeetingBtn roomId={room.id} />
+                        </p>
+                        
+                    ))}
+                </Group>
             ) : (
                 <p>You don’t have any bookings yet.</p>
             )}
