@@ -12,7 +12,7 @@ function RouteComponent() {
 <div>
     <div style={styles.hejallan}>
         <h1>Velkommen tilbage, Allan!</h1>
-        <p>Torsdag, 14. November</p>
+        <p style={{margin:'inherit'}}>Torsdag, 14. November</p>
     </div>
       <div style={styles.container}>
         <div style={styles.component}>
@@ -39,6 +39,12 @@ function RouteComponent() {
     component: {
       flex: '1 1 45%', // Ensures both components take up 45% of the width and adjust for smaller screens
       maxWidth: '500px', // Limits how wide each component can grow
+    },
+    hejallan: {
+      paddingLeft: '20%',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
     },
   };
   

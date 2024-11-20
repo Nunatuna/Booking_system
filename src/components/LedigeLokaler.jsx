@@ -38,7 +38,7 @@ const styles = {
   container: {
     textAlign: 'center',
     fontFamily: 'Arial, sans-serif',
-    marginTop: '50px',
+
   },
   ledigeCard: {
     backgroundColor: '#E3F2FD',

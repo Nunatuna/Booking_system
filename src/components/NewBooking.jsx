@@ -23,7 +23,6 @@ const styles = {
   container: {
     textAlign: 'center',
     fontFamily: 'Arial, sans-serif',
-    marginTop: '50px',
   },
 
   bookingCard: {
