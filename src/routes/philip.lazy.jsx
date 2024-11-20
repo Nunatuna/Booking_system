@@ -11,7 +11,7 @@ function RouteComponent() {
     return (
 <div>
     <div style={styles.hejallan}>
-        <h1>Velkommen tilbage, Allan!</h1>
+        <h1 style={{margin: 0}}>Velkommen tilbage, Allan!</h1>
         <p style={{margin:'inherit'}}>Torsdag, 14. November</p>
     </div>
       <div style={styles.container}>
