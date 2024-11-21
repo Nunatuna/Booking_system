@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getSupabaseClient } from "../supabase/getSupabaseClient";
 import Spinner from './Spinner';
 import CancelMeetingBtn from './CancelMeetingBtn';
-import { Group } from "@mantine/core";
+import { Group, Title, Text  } from "@mantine/core";
 
 
 // CSS styles
@@ -34,39 +34,12 @@ const roomsStyle = {
     gap: "15px",
 };
 
-const headerStyle = {
-    fontSize: "24px",
-    fontWeight: "bold",
-    marginBottom: "20px",
-    marginTop: "0px",
-    color: "#364FC7",
-};
-
 const roomItemsStyle = {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    flex: "1 1 calc(100% - 30px)",
-    padding: "12px 20px",
+    flex: "100%",
+    padding: "0.8rem 1.5rem",
     border: "1px solid #364FC7",
-    borderRadius: "32px",
+    borderRadius: "2rem",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-    marginBottom: "15px",
-};
-
-const roomNameLabelStyle = {
-    fontSize: "14px",
-    fontWeight: "bold",
-    color: "#364FC7",
-    marginBottom: "5px",
-    marginTop: "0px",
-};
-
-const roomLabelStyle = {
-    fontSize: "14px",
-    fontWeight: "bold",
-    color: "#333",
-    margin: "0px",
 };
 
 const MyBookings = () => {
@@ -109,18 +82,18 @@ const MyBookings = () => {
 
   return (
     <div style={containerStyle}>
-        <h3 style={headerStyle}>My Bookings</h3>
+        <Title c="#364FC7" order={1} style={{ marginBottom: "2rem" }}>My Bookings</Title>
         <div style={roomsStyle}>
             {rooms.length > 0 ? (
                 <Group justify="space-between" gap="xs">
                     {rooms.map((room) => (
-                        <p key={room.id} style={roomItemsStyle}>
+                        <Group key={room.id} style={roomItemsStyle}>
                             <div>
-                                <p style={roomNameLabelStyle}><span >{room.Room_name}</span></p>
-                                <p style={roomLabelStyle}><span>{formatDateTime(room.Start_time)} - {formatDateTime(room.End_time)}</span></p>
+                                <Text c="#364FC7" fw={500} size="md">{room.Room_name}</Text>
+                                <Text fw={400} size="md">{formatDateTime(room.Start_time)} - {formatDateTime(room.End_time)}</Text>
                             </div>
                             <CancelMeetingBtn roomId={room.id} />
-                        </p>
+                        </Group>
                         
                     ))}
                 </Group>
