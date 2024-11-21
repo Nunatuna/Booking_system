@@ -11,7 +11,7 @@ export const Route = createLazyFileRoute('/philip')({
 
 function RouteComponent() {
     return (
-<div>
+<div style={styles.nybookingcontainer}>
     <div style={styles.hejallan}>
     <Title style={{margin: 0, color: '#364FC7'}} order={1}>Velkommen tilbage, Allan!</Title>
     <Text style={{color:'#364FC7'}} size="md">Torsdag, 14. November</Text>
@@ -31,24 +31,32 @@ function RouteComponent() {
   
 
   const styles = {
+    nybookingcontainer:{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
+
     container: {
       display: 'flex', // Aligns components side by side
       // justifyContent: 'center', // Centers the components horizontally
       alignItems: 'flex-start', // Aligns components at the top
-      gap: '40px', // Adds spacing between the components
+      gap: '70px', // Adds spacing between the components
       // padding: '20px',
-      paddingLeft: '10%',
+
     },
     component: {
       flex: '1 1 45%', // Ensures both components take up 45% of the width and adjust for smaller screens
       maxWidth: '500px', // Limits how wide each component can grow
     },
     hejallan: {
-      paddingLeft: '10%',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'flex-start',
+      alignSelf: 'flex-start', // Ensures the text block aligns to the left of its container
+      textAlign: 'left',      // Aligns text within the block to the left
+      marginBottom: '20px',   // Optional: Add spacing below the text block
+      marginLeft: '225px',
+      paddingTop: '55px',
     },
+    
   };
   
 
