@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { createLazyFileRoute } from '@tanstack/react-router'
 
-export const Route = createLazyFileRoute('/login')({
+export const Route = createLazyFileRoute('/resevere')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  return 'Hello /login! Her skal login siden være'
+  return 'Hello /resevere!'
 }

@@ -1,10 +1,13 @@
 import * as React from 'react'
 import { createLazyFileRoute } from '@tanstack/react-router'
+import Bookcard from '../components/bookcard'
 
-export const Route = createLazyFileRoute('/login')({
+
+export const Route = createLazyFileRoute('/bookcardtest')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  return 'Hello /login! Her skal login siden være'
-}
+  return (
+    <Bookcard />
+  )}

@@ -1,5 +1,6 @@
 import React from 'react';
-
+import { Title } from '@mantine/core';
+import { Button } from '@mantine/core';
 function NyBooking() {
   const handleBookingClick = () => {
     alert("Booking initiated!"); // Replace this with your booking logic
@@ -9,10 +10,9 @@ function NyBooking() {
     // velkommen tilbage er replaceable, Nybooking her 
     <div style={styles.container}>
       <div style={styles.bookingCard}>
-        <p style={styles.text}>Ny booking?</p>
-        <button style={styles.button} onClick={handleBookingClick}>
-          BOOK
-        </button>
+      <Title style={styles.text} order={2}>Ny booking?</Title>
+      <Button style={styles.button} onClick={handleBookingClick} variant="filled" color="indigo" size="lg" radius="xl">BOOK</Button>
+
       </div>
     </div>
     
@@ -26,30 +26,33 @@ const styles = {
   },
 
   bookingCard: {
-    backgroundColor: '#E3F2FD',
+    backgroundColor: '#DBE4FF',
     padding: '10%',
     borderRadius: '10px',
     display: 'inline-block',
     boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
-    width: '100%',
-    minHeight: '600px',
+    width: '528px',
+    minHeight: '530px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
   },
   text: {
-    fontSize: '18px',
-    color: '#2E3A59',
+    width: '160px',
+    height: '35px',
+
+    color: '#4C6EF5',
     marginBottom: '10px',
   },
   button: {
-    fontSize: '16px',
+    width: '160px',
+    height: '64px',
     backgroundColor: '#3F51B5',
     color: '#FFFFFF',
     padding: '10px 30px',
     border: 'none',
-    borderRadius: '25px',
+
     cursor: 'pointer',
   },
     // heading: {
