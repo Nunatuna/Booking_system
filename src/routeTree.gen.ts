@@ -20,11 +20,7 @@ const SofieLazyImport = createFileRoute('/sofie')()
 const ResevereLazyImport = createFileRoute('/resevere')()
 const PhilipLazyImport = createFileRoute('/philip')()
 const LoginLazyImport = createFileRoute('/login')()
-<<<<<<< HEAD
-const CalendarLazyImport = createFileRoute('/calendar')()
-=======
 const BookcardtestLazyImport = createFileRoute('/bookcardtest')()
->>>>>>> dcc9e6022d41ce3deaed090cc92977383c37d51b
 const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
 
@@ -54,19 +50,11 @@ const LoginLazyRoute = LoginLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/login.lazy').then((d) => d.Route))
 
-<<<<<<< HEAD
-const CalendarLazyRoute = CalendarLazyImport.update({
-  id: '/calendar',
-  path: '/calendar',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/calendar.lazy').then((d) => d.Route))
-=======
 const BookcardtestLazyRoute = BookcardtestLazyImport.update({
   id: '/bookcardtest',
   path: '/bookcardtest',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/bookcardtest.lazy').then((d) => d.Route))
->>>>>>> dcc9e6022d41ce3deaed090cc92977383c37d51b
 
 const AboutLazyRoute = AboutLazyImport.update({
   id: '/about',
@@ -98,19 +86,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutLazyImport
       parentRoute: typeof rootRoute
     }
-<<<<<<< HEAD
-    '/calendar': {
-      id: '/calendar'
-      path: '/calendar'
-      fullPath: '/calendar'
-      preLoaderRoute: typeof CalendarLazyImport
-=======
     '/bookcardtest': {
       id: '/bookcardtest'
       path: '/bookcardtest'
       fullPath: '/bookcardtest'
       preLoaderRoute: typeof BookcardtestLazyImport
->>>>>>> dcc9e6022d41ce3deaed090cc92977383c37d51b
       parentRoute: typeof rootRoute
     }
     '/login': {
@@ -149,11 +129,7 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
-<<<<<<< HEAD
-  '/calendar': typeof CalendarLazyRoute
-=======
   '/bookcardtest': typeof BookcardtestLazyRoute
->>>>>>> dcc9e6022d41ce3deaed090cc92977383c37d51b
   '/login': typeof LoginLazyRoute
   '/philip': typeof PhilipLazyRoute
   '/resevere': typeof ResevereLazyRoute
@@ -163,11 +139,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
-<<<<<<< HEAD
-  '/calendar': typeof CalendarLazyRoute
-=======
   '/bookcardtest': typeof BookcardtestLazyRoute
->>>>>>> dcc9e6022d41ce3deaed090cc92977383c37d51b
   '/login': typeof LoginLazyRoute
   '/philip': typeof PhilipLazyRoute
   '/resevere': typeof ResevereLazyRoute
@@ -178,11 +150,7 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
-<<<<<<< HEAD
-  '/calendar': typeof CalendarLazyRoute
-=======
   '/bookcardtest': typeof BookcardtestLazyRoute
->>>>>>> dcc9e6022d41ce3deaed090cc92977383c37d51b
   '/login': typeof LoginLazyRoute
   '/philip': typeof PhilipLazyRoute
   '/resevere': typeof ResevereLazyRoute
@@ -191,43 +159,16 @@ export interface FileRoutesById {
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-<<<<<<< HEAD
-  fullPaths:
-    | '/'
-    | '/about'
-    | '/calendar'
-    | '/login'
-    | '/philip'
-    | '/resevere'
-    | '/sofie'
-  fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/about'
-    | '/calendar'
-    | '/login'
-    | '/philip'
-    | '/resevere'
-    | '/sofie'
-=======
   fullPaths: '/' | '/about' | '/bookcardtest' | '/login' | '/philip' | '/sofie'
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/about' | '/bookcardtest' | '/login' | '/philip' | '/sofie'
->>>>>>> dcc9e6022d41ce3deaed090cc92977383c37d51b
   id:
     | '__root__'
     | '/'
     | '/about'
-<<<<<<< HEAD
-    | '/calendar'
-    | '/login'
-    | '/philip'
-    | '/resevere'
-=======
     | '/bookcardtest'
     | '/login'
     | '/philip'
->>>>>>> dcc9e6022d41ce3deaed090cc92977383c37d51b
     | '/sofie'
   fileRoutesById: FileRoutesById
 }
@@ -235,11 +176,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   AboutLazyRoute: typeof AboutLazyRoute
-<<<<<<< HEAD
-  CalendarLazyRoute: typeof CalendarLazyRoute
-=======
   BookcardtestLazyRoute: typeof BookcardtestLazyRoute
->>>>>>> dcc9e6022d41ce3deaed090cc92977383c37d51b
   LoginLazyRoute: typeof LoginLazyRoute
   PhilipLazyRoute: typeof PhilipLazyRoute
   ResevereLazyRoute: typeof ResevereLazyRoute
@@ -249,11 +186,7 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   AboutLazyRoute: AboutLazyRoute,
-<<<<<<< HEAD
-  CalendarLazyRoute: CalendarLazyRoute,
-=======
   BookcardtestLazyRoute: BookcardtestLazyRoute,
->>>>>>> dcc9e6022d41ce3deaed090cc92977383c37d51b
   LoginLazyRoute: LoginLazyRoute,
   PhilipLazyRoute: PhilipLazyRoute,
   ResevereLazyRoute: ResevereLazyRoute,
@@ -272,11 +205,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/about",
-<<<<<<< HEAD
-        "/calendar",
-=======
         "/bookcardtest",
->>>>>>> dcc9e6022d41ce3deaed090cc92977383c37d51b
         "/login",
         "/philip",
         "/resevere",
@@ -289,13 +218,8 @@ export const routeTree = rootRoute
     "/about": {
       "filePath": "about.lazy.jsx"
     },
-<<<<<<< HEAD
-    "/calendar": {
-      "filePath": "calendar.lazy.jsx"
-=======
     "/bookcardtest": {
       "filePath": "bookcardtest.lazy.jsx"
->>>>>>> dcc9e6022d41ce3deaed090cc92977383c37d51b
     },
     "/login": {
       "filePath": "login.lazy.jsx"
