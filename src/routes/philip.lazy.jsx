@@ -1,19 +1,51 @@
-import * as React from 'react'
+import {useState, useEffect} from "react"
 import { createLazyFileRoute } from '@tanstack/react-router'
 import NyBooking from '../components/NewBooking';
 import LedigeLokaler from '../components/LedigeLokaler';
 import { Title } from '@mantine/core';
 import { Text } from '@mantine/core';
 import NavBar from '../components/NavBar';
+import Spinner from "../components/Spinner";
+import { getSupabaseClient } from "../supabase/getSupabaseClient";
 
 export const Route = createLazyFileRoute('/philip')({
   component: RouteComponent,
 });
 
 function RouteComponent() {
+  const [rooms, setRooms] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+   useEffect(() => {
+      async function fetchMeetingRooms() {
+      setLoading(true);
+      const supabase = getSupabaseClient();
+
+      // Fetch data from the "MeetingRooms" table in Supabase
+
+      // SPØRG AIDEN OM DET ER DE LEDIGE ? ELLER ? 
+      const { data, error } = await supabase
+          .from("MeetingRooms") // MeetingRooms table
+          .select("id, Room_name, Start_time, End_time"); // Select id, room name and start/end times coloumns
+
+      if (error) { // Error message
+          console.error("Error fetching meeting rooms:", error);
+      } else {
+          setRooms(data); // Set the fetched data to the rooms state
+      }
+      setLoading(false); // Set loading state to false
+      }
+
+      fetchMeetingRooms(); // Call the fetchMeetingRooms function
+}, []);
+
+if (loading) { // Loading spinner that appears when the data is loading
+  return <div style={loadingStyle}><Spinner /></div>;
+}
+
     return (
 <div>
-  <NavBar /> LOL I MIN HUL
+  <NavBar /> 
 <div style={styles.nybookingcontainer}>
     <div style={styles.hejallan}>
     <Title style={{margin: 0, color: '#364FC7'}} order={1}>Velkommen tilbage, Allan!</Title>
@@ -24,7 +56,9 @@ function RouteComponent() {
           <NyBooking />
         </div>
         <div style={styles.component}>
-          <LedigeLokaler />
+          {/* Her skal det rigtige data være */}
+          <LedigeLokaler rooms={rooms}/>
+          
         </div>
       </div>
 </div>
@@ -33,6 +67,13 @@ function RouteComponent() {
  );
 }
   
+// CSS styles
+const loadingStyle = {
+  display: "flex",
+  justifyContent: "center",
+  marginTop: "200px",
+};
+
   const styles = {
     nybookingcontainer:{
       display: 'flex',

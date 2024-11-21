@@ -2,16 +2,12 @@ import React from 'react';
 import CancelMeetingButton from './CancelMeetingBtn';
 import { Title } from '@mantine/core';
 import { Button } from '@mantine/core';
+import BookingDisplay from './BookingDisplay';
+import ConfirmMeetingBtn from './ConfirmMeetingBtn';
 
 
-function AvailableRooms() {
-  const rooms = [
-    { id: 1, name: 'Grupperum #1', time: 'Kl. 10:00-11:00' },
-    { id: 2, name: 'Grupperum #2', time: 'Kl. 11:00-12:00' },
-    { id: 3, name: 'Grupperum #3', time: 'Kl. 13:00-14:00' },
-    { id: 4, name: 'Grupperum #4', time: 'Kl. 15:00-16:00' },
-  ];
-
+function AvailableRooms({rooms}) {
+  
   const handleBooking = (roomName) => {
     alert(`Booking for ${roomName} initiated!`);
   };
@@ -22,14 +18,9 @@ function AvailableRooms() {
         <Title style={styles.heading} order={1}>Ledige lokaler i dag: </Title>
       <div style={styles.cardContainer}>
         {rooms.map((room) => (
-          <div key={room.id} style={styles.roomCard}>
-            <div style={styles.roomInfo}>
-              <p style={styles.roomName}>{room.name}</p>
-              <p style={styles.roomTime}>{room.time}</p>
-            </div>
-            <Button onClick={() => handleBooking(room.name)} variant="filled" color="indigo" size="sm" radius="xl">BOOK</Button>
-     
-          </div>
+          <BookingDisplay key={room.id} room={room}>
+            <ConfirmMeetingBtn />
+          </BookingDisplay>
         ))}
       </div>
     </div>
@@ -44,7 +35,7 @@ const styles = {
   //   marginBottom: '20px',
   // },
   container: {
-    textAlign: 'center',
+    // textAlign: 'center',
     fontFamily: 'Arial, sans-serif',
 
   },
@@ -59,6 +50,7 @@ const styles = {
   
   },
   heading: {
+    textAlign: 'center',
     fontSize: '24px',
     color: '#364FC7',
     marginBottom: '20px',
@@ -66,7 +58,7 @@ const styles = {
   cardContainer: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+
   },
   roomCard: {
     // backgroundColor: '#E3F2FD',

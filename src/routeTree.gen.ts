@@ -19,6 +19,7 @@ import { Route as rootRoute } from './routes/__root'
 const SofieLazyImport = createFileRoute('/sofie')()
 const PhilipLazyImport = createFileRoute('/philip')()
 const LoginLazyImport = createFileRoute('/login')()
+const BookcardtestLazyImport = createFileRoute('/bookcardtest')()
 const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
 
@@ -41,6 +42,12 @@ const LoginLazyRoute = LoginLazyImport.update({
   path: '/login',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/login.lazy').then((d) => d.Route))
+
+const BookcardtestLazyRoute = BookcardtestLazyImport.update({
+  id: '/bookcardtest',
+  path: '/bookcardtest',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/bookcardtest.lazy').then((d) => d.Route))
 
 const AboutLazyRoute = AboutLazyImport.update({
   id: '/about',
@@ -72,6 +79,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutLazyImport
       parentRoute: typeof rootRoute
     }
+    '/bookcardtest': {
+      id: '/bookcardtest'
+      path: '/bookcardtest'
+      fullPath: '/bookcardtest'
+      preLoaderRoute: typeof BookcardtestLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -101,6 +115,7 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
+  '/bookcardtest': typeof BookcardtestLazyRoute
   '/login': typeof LoginLazyRoute
   '/philip': typeof PhilipLazyRoute
   '/sofie': typeof SofieLazyRoute
@@ -109,6 +124,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
+  '/bookcardtest': typeof BookcardtestLazyRoute
   '/login': typeof LoginLazyRoute
   '/philip': typeof PhilipLazyRoute
   '/sofie': typeof SofieLazyRoute
@@ -118,6 +134,7 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
+  '/bookcardtest': typeof BookcardtestLazyRoute
   '/login': typeof LoginLazyRoute
   '/philip': typeof PhilipLazyRoute
   '/sofie': typeof SofieLazyRoute
@@ -125,16 +142,24 @@ export interface FileRoutesById {
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/login' | '/philip' | '/sofie'
+  fullPaths: '/' | '/about' | '/bookcardtest' | '/login' | '/philip' | '/sofie'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/login' | '/philip' | '/sofie'
-  id: '__root__' | '/' | '/about' | '/login' | '/philip' | '/sofie'
+  to: '/' | '/about' | '/bookcardtest' | '/login' | '/philip' | '/sofie'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/bookcardtest'
+    | '/login'
+    | '/philip'
+    | '/sofie'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   AboutLazyRoute: typeof AboutLazyRoute
+  BookcardtestLazyRoute: typeof BookcardtestLazyRoute
   LoginLazyRoute: typeof LoginLazyRoute
   PhilipLazyRoute: typeof PhilipLazyRoute
   SofieLazyRoute: typeof SofieLazyRoute
@@ -143,6 +168,7 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   AboutLazyRoute: AboutLazyRoute,
+  BookcardtestLazyRoute: BookcardtestLazyRoute,
   LoginLazyRoute: LoginLazyRoute,
   PhilipLazyRoute: PhilipLazyRoute,
   SofieLazyRoute: SofieLazyRoute,
@@ -160,6 +186,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/about",
+        "/bookcardtest",
         "/login",
         "/philip",
         "/sofie"
@@ -170,6 +197,9 @@ export const routeTree = rootRoute
     },
     "/about": {
       "filePath": "about.lazy.jsx"
+    },
+    "/bookcardtest": {
+      "filePath": "bookcardtest.lazy.jsx"
     },
     "/login": {
       "filePath": "login.lazy.jsx"

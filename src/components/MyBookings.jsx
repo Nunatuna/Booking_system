@@ -3,6 +3,7 @@ import { getSupabaseClient } from "../supabase/getSupabaseClient";
 import Spinner from './Spinner';
 import CancelMeetingBtn from './CancelMeetingBtn';
 import { Group } from "@mantine/core";
+import BookingDisplay from "./BookingDisplay";
 
 
 // CSS styles
@@ -114,14 +115,9 @@ const MyBookings = () => {
             {rooms.length > 0 ? (
                 <Group justify="space-between" gap="xs">
                     {rooms.map((room) => (
-                        <p key={room.id} style={roomItemsStyle}>
-                            <div>
-                                <p style={roomNameLabelStyle}><span >{room.Room_name}</span></p>
-                                <p style={roomLabelStyle}><span>{formatDateTime(room.Start_time)} - {formatDateTime(room.End_time)}</span></p>
-                            </div>
+                        <BookingDisplay key={room.id} room={room}>
                             <CancelMeetingBtn roomId={room.id} />
-                        </p>
-                        
+                        </BookingDisplay>
                     ))}
                 </Group>
             ) : (
