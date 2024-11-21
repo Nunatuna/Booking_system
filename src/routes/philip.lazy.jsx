@@ -4,6 +4,7 @@ import NyBooking from '../components/NewBooking';
 import LedigeLokaler from '../components/LedigeLokaler';
 import { Title } from '@mantine/core';
 import { Text } from '@mantine/core';
+import NavBar from '../components/NavBar';
 
 export const Route = createLazyFileRoute('/philip')({
   component: RouteComponent,
@@ -11,6 +12,8 @@ export const Route = createLazyFileRoute('/philip')({
 
 function RouteComponent() {
     return (
+<div>
+  <NavBar /> LOL I MIN HUL
 <div style={styles.nybookingcontainer}>
     <div style={styles.hejallan}>
     <Title style={{margin: 0, color: '#364FC7'}} order={1}>Velkommen tilbage, Allan!</Title>
@@ -24,6 +27,7 @@ function RouteComponent() {
           <LedigeLokaler />
         </div>
       </div>
+</div>
 </div>
 
  );
