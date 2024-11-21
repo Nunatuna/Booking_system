@@ -25,11 +25,10 @@ function RouteComponent() {
         </div>
       </div>
 </div>
-     
-    );
-  }
-  
 
+ );
+}
+  
   const styles = {
     nybookingcontainer:{
       display: 'flex',
