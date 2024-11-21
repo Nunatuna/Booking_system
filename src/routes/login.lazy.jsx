@@ -6,5 +6,5 @@ export const Route = createLazyFileRoute('/login')({
 })
 
 function RouteComponent() {
-  return 'Hello /login!'
+  return 'Hello /login! Her skal login siden være'
 }
