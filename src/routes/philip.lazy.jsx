@@ -13,7 +13,7 @@ export const Route = createLazyFileRoute('/philip')({
 function RouteComponent() {
     return (
 <div>
-  <NavBar /> LOL I MIN HUL
+  <NavBar /> 
 <div style={styles.nybookingcontainer}>
     <div style={styles.hejallan}>
     <Title style={{margin: 0, color: '#364FC7'}} order={1}>Velkommen tilbage, Allan!</Title>
