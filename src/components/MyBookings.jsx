@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Spinner from "./Spinner";
 import { getSupabaseClient } from "../supabase/getSupabaseClient";
 import { Title, Text, Group } from '@mantine/core';
-import CancelMeetingBtn from './CancelMeetingBtn';
+import CancelBookingBtn from './CancelBookingBtn';
+import NyBooking from './NewBooking';
 
 // CSS styles
 const loadingStyle = {
@@ -74,7 +75,7 @@ const MyBookings = () => {
     const formatDateTime = (dateTime) => {
         const date = new Date(dateTime);
         return date.toLocaleString('en-US', { 
-            day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false
+            day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false //simplifies the date and time
         });
     };
 
@@ -90,12 +91,15 @@ const MyBookings = () => {
                                     <Text c="#364FC7" fw={500} size="md">{room.Room_name}</Text>
                                     <Text fw={400} size="md">{formatDateTime(room.Start_time)} - {formatDateTime(room.End_time)}</Text>
                                 </div>
-                                <CancelMeetingBtn roomId={room.id} onCancel={removeRoom} />
+                                <CancelBookingBtn roomId={room.id} onCancel={removeRoom} />
                             </Group>
                         ))}
                     </Group>
                 ) : (
-                    <p>You don’t have any bookings yet.</p>
+                    <div>
+                        <p>You don’t have any bookings yet.</p>
+                        <NyBooking />
+                    </div>
                 )}
             </div>
         </div>

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { Button, Modal, Group, Text } from "@mantine/core";
 
-const CancelMeetingBtn = ({ roomId, onCancel }) => {
+const CancelBookingBtn = ({ roomId, onCancel }) => {
   const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -41,9 +41,9 @@ const CancelMeetingBtn = ({ roomId, onCancel }) => {
   );
 };
 
-CancelMeetingBtn.propTypes = {
+CancelBookingBtn.propTypes = {
   roomId: PropTypes.number.isRequired,
   onCancel: PropTypes.func.isRequired, // Ensure onCancel is a required function
 };
 
-export default CancelMeetingBtn;
+export default CancelBookingBtn;
