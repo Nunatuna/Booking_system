@@ -87,7 +87,7 @@ function Bookcard() {
                     ))}
                 </Group>
             ) : (
-                <p>You don’t have any Bookings yet.</p>
+                <p>You dont have any Bookings yet.</p>
             )}
         </div>
     </div>
