@@ -1,9 +1,12 @@
 import React from 'react';
 import { Title } from '@mantine/core';
 import { Button } from '@mantine/core';
+import { Link } from '@tanstack/react-router'; // This is correct import from @tanstack/react-router
+
 function NyBooking() {
   const handleBookingClick = () => {
-    alert("Booking initiated!"); // Replace this with your booking logic
+    // alert("Booking initiated!"); // Replace this with your booking logic
+    
   };
 
   return (
@@ -11,8 +14,9 @@ function NyBooking() {
     <div style={styles.container}>
       <div style={styles.bookingCard}>
       <Title style={styles.text} order={2}>Ny booking?</Title>
+      <Link to="/calendar">
       <Button style={styles.button} onClick={handleBookingClick} variant="filled" color="indigo" size="lg" radius="xl">BOOK</Button>
-
+      </Link>
       </div>
     </div>
     

@@ -32,7 +32,7 @@ const ConfirmMeetingBtn = ({ roomId }) => {
   return    (
     <>
       {/* Opens modal */}
-      <Button style={{ marginLeft: "auto" }} onClick={() => setModalOpen(true)} disabled={loading} variant="filled" color="#364FC7" radius="xl">Book</Button>
+      <Button style={{ marginLeft: "auto" }} onClick={() => setModalOpen(true)} disabled={loading} variant="filled" color="#364FC7" radius="xl">BOOK</Button>
 
       {/* Confirmation Modal */}
       <Modal opened={modalOpen} onClose={() => setModalOpen(false)} title="Confirm Booking" centered>
