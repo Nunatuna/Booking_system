@@ -49,16 +49,21 @@ const styles = {
     color: '#4C6EF5',
     marginBottom: '10px',
   },
-  button: {
-    width: '160px',
-    height: '64px',
-    backgroundColor: '#3F51B5',
-    color: '#FFFFFF',
-    padding: '10px 30px',
-    border: 'none',
 
-    cursor: 'pointer',
-  },
+// Skiftet button // 
+  // button: {
+  //   width: '160px',
+  //   height: '64px',
+  //   backgroundColor: '#3F51B5',
+  //   color: '#FFFFFF',
+  //   padding: '10px 30px',
+  //   border: 'none',
+
+  //   cursor: 'pointer',
+  // },
+
+
+
     // heading: {
   //   fontSize: '24px',
   //   color: '#2E3A59',
