@@ -21,7 +21,7 @@ function RouteComponent() {
      gap: '20px',
    },
    tid: {
-      backgroundColor: 'red',
+      border: '0.5px solid black',
       width: '75%',
       margin: '0 auto',
       height: '200px',
@@ -29,7 +29,7 @@ function RouteComponent() {
       padding: '40px',
    },
    ledige: {
-      backgroundColor: 'blue',
+      border: '0.5px solid black',
       width: '75%',
       margin: '0 auto',
       height: '370px',

@@ -28,7 +28,8 @@ function RouteComponent() {
           <CPHLogo />
       </div>
       <div style={styles.container}>
-        <image></image>
+        <image>hej</image>
+        <LogIn />
       </div>
     </>
   )
