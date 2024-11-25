@@ -10,14 +10,14 @@ function Callendar() {
       height: 'fit-content', // Calendar will adjust its height to fit the content
       padding: '30px', // Add padding inside the calendar
       borderRadius: '7px', // Round the corners of the calendar
-      border: '0.4px solid black', // Set a thin border around the calendar
+      border: '0.4px solid lightgray', // Set a thin border around the calendar
       margin: 'auto', // Center the calendar horizontally on the page
       backgroundColor: 'white', // Set the background color of the calendar
       filter: 'drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.1))', // Subtle shadow at the bottom
     },
   };
 
-  // cons er kopiret direkte fra mantime. I mantime var det en en tsx fil, så jeg bedte chatgpt at omskrive det til jsx fil så det gad at virke.
+  // const er kopiret direkte fra mantime. I mantime var det en en tsx fil, så jeg bedte chatgpt at omskrive det til jsx fil så det gad at virke.
   // jeg har også ændret det til at man kun kan vælge en dag.
   const [selected, setSelected] = useState([]); // Use plain array for selected dates
 
@@ -42,7 +42,7 @@ function Callendar() {
     <div style={style.Calendar}>
       {/* Render the Calendar component */}
       <Calendar
-        size="xl" // Set the calendar size to extra large
+        size="lg" // Set the calendar size to extra large
         getDayProps={(date) => ({
           // Check if the current date is selected
           selected: selected.some((s) => dayjs(date).isSame(s, 'date')),

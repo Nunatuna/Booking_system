@@ -5,6 +5,7 @@ import NavBar from '../components/NavBar';
 import { Calendar } from '@mantine/dates';
 import { Modal, Button, Title, Text } from '@mantine/core';
 import { IconHome, IconUser, IconLogout } from '@tabler/icons-react';
+import Callendar from '../components/Callendar'
 
 
 export const Route = createLazyFileRoute('/calendar')({
@@ -12,30 +13,23 @@ export const Route = createLazyFileRoute('/calendar')({
 })
 
 function RouteComponent() {
-    const styles = {
-      container: {
-        display: 'flex',            
-        flexDirection: 'column',  
-        justifyContent: 'center', 
-        alignItems: 'center',       
-        height: '700px',           
-        margin: '0 auto',
-      },
-    };
-  
+    const container = {
+      display: 'flex', // Aligns components side by side
+      justifyContent: 'center', // Centers the components horizontally
+      alignItems: 'center', // Aligns components at the top
+      flexDirection: 'column',
+      gap: '25px', // Adds spacing between the components
+      marginTop: '80px',
+    } 
+
     return (
       <>
         <NavBar />
-        <div style={styles.container}>
-          <Title order={2}>Vælg dato</Title>
-          <Calendar />
-          <Link to="#">
-            <Button variant="filled" color="#748FFC" size="xl" radius="xl">Vælg dato</Button>
-          </Link>
-          <br />
-          <Link to="#">
-            <Button variant="filled" color="#748FFC" size="xl" radius="xl">Tilbage</Button>
-          </Link>
+        <div style={container}>
+          <Title order={2}>Vælg en dato</Title>
+          <Callendar />
+          <Link to="/resevere"><Button variant="filled" color="#364FC7" size="lg" radius="xl" >VÆLG DATO</Button></Link>
+          <Link to="/philip"><Button variant="filled" color="#748FFC" size="lg" radius="xl" style={({ marginRight: "1200px" })} >TILBAGE</Button></Link>
         </div>
       </>
     );
