@@ -14,7 +14,5 @@ function RouteComponent() {
     <div>Joemama</div>
     </div>
   )
-  
-
   };
 
