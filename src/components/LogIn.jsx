@@ -5,11 +5,11 @@ import { Button, Title, Text } from '@mantine/core';
 import { Container } from '@mantine/core';
 import React, { useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
+import { supabaseUrl, supabaseKey } from '../supabase/supabaseClient';
 
 const supabaseUrl = "https://iwysntwharfmhhzyetmm.supabase.co"
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3eXNudHdoYXJmbWhoenlldG1tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzE5Mjg0MDcsImV4cCI6MjA0NzUwNDQwN30.-SHihWD9zkroJz88BMw6BztAa9srCXiAiw8IMLg5nP4"
 const supabase = createClient(supabaseUrl, supabaseKey)
-
 
 function LoginForm(){
     //container kode/styling
