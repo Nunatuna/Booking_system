@@ -14,7 +14,6 @@ function Index() {
   return (
     <>
       <NavBar />
-      <h3>Welcome Home!</h3>
       <MyBookings />
       <SignIn />
     </>
