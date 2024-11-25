@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { createLazyFileRoute } from '@tanstack/react-router'
-import { Button, Image, Title, Text } from '@mantine/core'
+import { Flex, Grid } from '@mantine/core'
 import CPHLogo from '../components/CPHLogo';
-import LogIn from '../components/LogIn';
+import SignIn from '../components/LogIn';
 
 
 export const Route = createLazyFileRoute('/login')({
@@ -14,23 +14,22 @@ function RouteComponent() {
     navbar: {
       padding: '20px',
     },
-    container:{
-      display: 'flex',
-      justifyContent: 'center',
-      allignItems: 'center',
-      backgroundColor: '#EDF2FF',
-    }
   }
   
   return (
     <>
-      <div style={styles.navbar} >
+    <Grid grow>
+      <Grid.Col>
+        <Flex>
           <CPHLogo />
-      </div>
-      <div style={styles.container}>
-        <image>hej</image>
-        <LogIn />
-      </div>
+        </Flex>
+      </Grid.Col>
+      <Grid.Col>
+        <Flex mih={50} justify="center" align="center" direction="column" wrap="wrap">
+          <SignIn />
+        </Flex>
+      </Grid.Col>
+    </Grid>
     </>
   )
 }
