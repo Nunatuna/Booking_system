@@ -17,7 +17,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 function RootRouteWithLayout() {
   return (
     <>
-       <div>
+       <div style={{ display: "flex", gap: "20px"}}>
         <Link to="/">Home  </Link>
         <Link to="/about">About  </Link>
         <Link to="/sofie">sofie test  </Link>
