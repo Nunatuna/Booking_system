@@ -21,13 +21,14 @@ export default function BDClickable({ room, children }) {
 
   // Helper function to format date and time to DD/MM & HH:MM
   const formatDateTime = (dateTime) => {
+    if (!dateTime) return 'Ugyldig dato'; // Håndter manglende værdi
     const date = new Date(dateTime);
-    return date.toLocaleString('en-US', {
+    if (isNaN(date)) return 'Ugyldig dato'; // Håndter ugyldigt format
+    return date.toLocaleString('da-DK', {
       day: '2-digit',
       month: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false,
+      year: 'numeric',
+  
     });
   };
 
@@ -42,7 +43,7 @@ export default function BDClickable({ room, children }) {
         </p>
         <p style={roomLabelStyle}>
           <span>
-            {formatDateTime(room.Start_time)} - {formatDateTime(room.End_time)}
+            {formatDateTime(room.Start_time)} 
           </span>
         </p>
       </div>

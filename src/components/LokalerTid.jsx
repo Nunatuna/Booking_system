@@ -17,14 +17,14 @@ export default function () {
         padding: '30px',
         borderRadius: '20px',
         height: '100%',
-        textAlign: 'center',
+        textAlign: 'center'
     }
   }
   
     return (
     <div style={styles.container}>
         <div style={styles.dum}>
-        Vælg et lokale for at vælge længden på din reservation.
+            Vælg et lokale for at vælge længden på din reservation.
         </div>
     </div>
   )

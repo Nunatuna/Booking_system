@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { Title, Text } from '@mantine/core';
-
 import BDClickable from './BDClickable';
+import LokalerTid from './LokalerTid';
+import { DatePicker } from '@mantine/dates';
+
+
+
 
 export default function Lokaler() {
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedRoom, setSelectedRoom] = useState(null);
+
   const styles = {
     container: {
-      // height: '700px',
       backgroundColor: 'White',
       border: '1px solid lightgrey',
       padding: '30px',
@@ -23,44 +29,45 @@ export default function Lokaler() {
     },
   };
 
+
   // Dummy room data (til test)
-  const roomData = [
-    {
-      Room_name: 'Mødelokale 1',
-      Start_time: '2024-11-26T09:00:00Z',
-      End_time: '2024-11-26T10:00:00Z',
-    },
-    {
-      Room_name: 'Mødelokale 2',
-      Start_time: '2024-11-26T11:00:00Z',
-      End_time: '2024-11-26T12:00:00Z',
-    },
-    {
-      Room_name: 'Mødelokale 3',
-      Start_time: '2024-11-26T11:00:00Z',
-      End_time: '2024-11-26T12:00:00Z',
-    },
-    {
-      Room_name: 'Mødelokale 4',
-      Start_time: '2024-11-26T11:00:00Z',
-      End_time: '2024-11-26T12:00:00Z',
-    },
-    {
-      Room_name: 'Mødelokale 5',
-      Start_time: '2024-11-26T11:00:00Z',
-      End_time: '2024-11-26T12:00:00Z',
-    },
+  const Lokaleliste = [
+    { Room_name: 'Mødelokale 1' },
+    { Room_name: 'Mødelokale 2' },
+    { Room_name: 'Mødelokale 3' },
+    { Room_name: 'Mødelokale 4' },
+    { Room_name: 'Mødelokale 5' },
   ];
+
+  const handleRoomSelect = (room) => {
+    setSelectedRoom(room);
+  };
 
   return (
     <div style={styles.container}>
-      <Title order={2} style={{ color: '#4C6EF5' }}>Lokaler</Title>
-      <Text style={{ color: '#4C6EF5' }}>Valgt dato:</Text>
+      <Title order={2} style={{ color: '#4C6EF5' }}>Vælg dato og lokale</Title>
+      <DatePicker
+        label="Dato"
+        placeholder="Velg dato"
+        valueFormat="DD-MM-YYYY"
+        value={selectedDate}
+        onChange={setSelectedDate}
+      />
+      <Text style={{ marginTop: '20px', color: '#4C6EF5' }}>
+        Valgt dato: {selectedDate ? selectedDate.toLocaleDateString() : 'Ingen valgt'}
+      </Text>
       <div style={styles.containerLokaler}>
-        {roomData.map((room, index) => (
-          <BDClickable key={index} room={room} />
+        {Lokaleliste.map((room, index) => (
+          <BDClickable
+            key={index}
+            room={room}
+            onClick={() => handleRoomSelect(room)}
+          />
         ))}
       </div>
+      {selectedRoom && selectedDate && (
+        <LokalerTid selectedRoom={selectedRoom} selectedDate={selectedDate} />
+      )}
     </div>
   );
 }
