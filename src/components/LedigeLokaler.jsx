@@ -5,6 +5,8 @@ import { Title } from '@mantine/core';
 import BookingDisplay from './BookingDisplay';
 import ConfirmMeetingBtn from './ConfirmMeetingBtn';
 
+// Rigtig stort udbud efterspørgsel
+//Tegn to løsninger -> En med 24t booking -> en med 2 timers intervaller. 
 
 function AvailableRooms({rooms}) {
   

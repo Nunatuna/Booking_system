@@ -37,3 +37,25 @@ n.App {
   }
 }
 
+.roomItemsStyle{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1 1 calc(100% - 30px);
+  padding: 12px 20px;
+  border: 1px solid #364fc7;
+  border-radius: 32px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  transition: 0.5s ease;
+}
+
+.roomItemsStyle:hover {
+  background-color: #EDF2FF; /* Light blue on hover */
+  transform: scale(1.02); /* Slight zoom effect */
+}
+
+.roomItemsStyle.clicked {
+  background-color: #d4d4d4; /* Grey background when clicked */
+}
+
