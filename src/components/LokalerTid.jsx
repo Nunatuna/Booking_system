@@ -16,14 +16,15 @@ export default function () {
         backgroundColor: '#F5F5F5',
         padding: '30px',
         borderRadius: '20px',
-        height: 'fit-content',
+        height: '100%',
+        textAlign: 'center',
     }
   }
   
     return (
     <div style={styles.container}>
         <div style={styles.dum}>
-            her er tiderne
+        Vælg et lokale for at vælge længden på din reservation.
         </div>
     </div>
   )
