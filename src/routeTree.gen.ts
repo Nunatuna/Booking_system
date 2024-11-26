@@ -17,6 +17,7 @@ import { Route as rootRoute } from './routes/__root'
 // Create Virtual Routes
 
 const SofieLazyImport = createFileRoute('/sofie')()
+const SignUpLazyImport = createFileRoute('/sign-up')()
 const ResevereLazyImport = createFileRoute('/resevere')()
 const PhilipLazyImport = createFileRoute('/philip')()
 const LoginLazyImport = createFileRoute('/login')()
@@ -32,6 +33,12 @@ const SofieLazyRoute = SofieLazyImport.update({
   path: '/sofie',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/sofie.lazy').then((d) => d.Route))
+
+const SignUpLazyRoute = SignUpLazyImport.update({
+  id: '/sign-up',
+  path: '/sign-up',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/sign-up.lazy').then((d) => d.Route))
 
 const ResevereLazyRoute = ResevereLazyImport.update({
   id: '/resevere',
@@ -128,6 +135,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResevereLazyImport
       parentRoute: typeof rootRoute
     }
+    '/sign-up': {
+      id: '/sign-up'
+      path: '/sign-up'
+      fullPath: '/sign-up'
+      preLoaderRoute: typeof SignUpLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/sofie': {
       id: '/sofie'
       path: '/sofie'
@@ -148,6 +162,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginLazyRoute
   '/philip': typeof PhilipLazyRoute
   '/resevere': typeof ResevereLazyRoute
+  '/sign-up': typeof SignUpLazyRoute
   '/sofie': typeof SofieLazyRoute
 }
 
@@ -159,6 +174,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginLazyRoute
   '/philip': typeof PhilipLazyRoute
   '/resevere': typeof ResevereLazyRoute
+  '/sign-up': typeof SignUpLazyRoute
   '/sofie': typeof SofieLazyRoute
 }
 
@@ -171,6 +187,7 @@ export interface FileRoutesById {
   '/login': typeof LoginLazyRoute
   '/philip': typeof PhilipLazyRoute
   '/resevere': typeof ResevereLazyRoute
+  '/sign-up': typeof SignUpLazyRoute
   '/sofie': typeof SofieLazyRoute
 }
 
@@ -184,6 +201,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/philip'
     | '/resevere'
+    | '/sign-up'
     | '/sofie'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -194,6 +212,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/philip'
     | '/resevere'
+    | '/sign-up'
     | '/sofie'
   id:
     | '__root__'
@@ -204,6 +223,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/philip'
     | '/resevere'
+    | '/sign-up'
     | '/sofie'
   fileRoutesById: FileRoutesById
 }
@@ -216,6 +236,7 @@ export interface RootRouteChildren {
   LoginLazyRoute: typeof LoginLazyRoute
   PhilipLazyRoute: typeof PhilipLazyRoute
   ResevereLazyRoute: typeof ResevereLazyRoute
+  SignUpLazyRoute: typeof SignUpLazyRoute
   SofieLazyRoute: typeof SofieLazyRoute
 }
 
@@ -227,6 +248,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginLazyRoute: LoginLazyRoute,
   PhilipLazyRoute: PhilipLazyRoute,
   ResevereLazyRoute: ResevereLazyRoute,
+  SignUpLazyRoute: SignUpLazyRoute,
   SofieLazyRoute: SofieLazyRoute,
 }
 
@@ -247,6 +269,7 @@ export const routeTree = rootRoute
         "/login",
         "/philip",
         "/resevere",
+        "/sign-up",
         "/sofie"
       ]
     },
@@ -270,6 +293,9 @@ export const routeTree = rootRoute
     },
     "/resevere": {
       "filePath": "resevere.lazy.jsx"
+    },
+    "/sign-up": {
+      "filePath": "sign-up.lazy.jsx"
     },
     "/sofie": {
       "filePath": "sofie.lazy.jsx"

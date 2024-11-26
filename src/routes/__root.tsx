@@ -25,6 +25,7 @@ function RootRouteWithLayout() {
         <Link to="/login">login </Link>
         <Link to="/calendar">calendr </Link>
         <Link to="/resevere">resevere </Link>
+        <Link to="/sign-up">Sign Up </Link>
    
       </div> 
       <hr />
