@@ -28,9 +28,7 @@ function RootRouteWithLayout() {
         <Link to="/sign-up">Sign Up</Link>
    
       </div> 
-      <hr />
       <Outlet />
-      <TanStackRouterDevtools />
     </>
   );
 }
