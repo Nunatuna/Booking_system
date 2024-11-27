@@ -5,7 +5,7 @@ const CurrentDate = () => {
 
   useEffect(() => {
     const today = new Date();
-    const formattedDate = today.toLocaleDateString(); // Format the date as MM/DD/YYYY
+    const formattedDate = today.toLocaleDateString(); // Formater dato til MM/DD/YYYY
     setCurrentDate(formattedDate);
   }, []);
 

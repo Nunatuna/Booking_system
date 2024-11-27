@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Button, TextInput, PasswordInput, Space, Title, Image, Flex, Text, Group } from '@mantine/core';
 import { getSupabaseClient } from '../supabase/getSupabaseClient';
 import LoginGraphic from '../img/login-graphic.png';
-import WelcomeUser from './WelcomeUser';
-import { Link } from '@tanstack/react-router';
+import { Link, useNavigate } from '@tanstack/react-router';
 
 const positionStyle = {
   display: "flex",
@@ -30,14 +29,14 @@ const linkStyle = {
   color: "white",
   fontSize: "14px",
   fontWeight: "500",
-}
+};
 
 function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState(''); // Store error message
-  const [loggedIn, setLoggedIn] = useState(false); // Track login status
+  const [errorMessage, setErrorMessage] = useState('');
   const supabase = getSupabaseClient();
+  const navigate = useNavigate();
 
   async function signInWithEmail() {
     try {
@@ -48,10 +47,10 @@ function SignIn() {
 
       if (error) {
         console.error("Error signing in:", error.message);
-        setErrorMessage("Invalid email or password. Please try again."); // Set user-friendly error message
+        setErrorMessage("Invalid email or password. Please try again.");
       } else {
-        setErrorMessage(''); // Clear any previous errors on successful login
-        setLoggedIn(true); // Set login state to true on success
+        setErrorMessage('');
+        navigate({ to: '/philip' }); // Navigate to the index page on successful login
       }
     } catch (err) {
       console.error("Unexpected error:", err);
@@ -64,41 +63,40 @@ function SignIn() {
     signInWithEmail();
   };
 
-  if (loggedIn) {
-    return <WelcomeUser />; // Show WelcomeUser after login
-  }
-
   return (
     <div style={positionStyle}>
       <div style={containerStyle}>
-          <Image style={imageStyle} radius="md" src={LoginGraphic} />
-          <Flex justify="center" direction="column" style={{ height: "100%" }}>
-            <Title style={{ marginBottom: "1rem" }} order={1}>Login</Title>
-            <form>
-              <TextInput
-                placeholder="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <Space h="lg" />
-              <PasswordInput
-                placeholder="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <Space h="lg" />
-              {errorMessage && ( // Show error message if it exists
-                <Text color="red" size="14px" style={{ marginBottom: "1rem" }}>
-                  {errorMessage}
-                </Text>
-              )}
-              <Group grow>
-                <Button onClick={handleSignin} variant="filled" color="#364FC7" radius="xl">Login</Button>
-                <Link style={linkStyle} variant="filled" to="/sign-up">Sign Up</Link>
-              </Group>
-            </form>
-          </Flex>
+        <Image style={imageStyle} radius="md" src={LoginGraphic} />
+        <Flex justify="center" direction="column" style={{ height: "100%" }}>
+          <Title style={{ marginBottom: "1rem", color: "#364FC7" }} order={1}>Login</Title>
+          <Text style={{ marginBottom: "1rem", color: "#364FC7" }}>
+            Velkommen til Cphbusiness’ bookingsystem. Log ind for at se dine bookinger.
+          </Text>
+          <form>
+            <TextInput
+              placeholder="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Space h="lg" />
+            <PasswordInput
+              placeholder="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <Space h="lg" />
+            {errorMessage && (
+              <Text color="red" size="14px" style={{ marginBottom: "1rem" }}>
+                {errorMessage}
+              </Text>
+            )}
+            <Group grow>
+              <Button onClick={handleSignin} variant="filled" color="#364FC7" radius="xl">Login</Button>
+              <Link style={linkStyle} variant="filled" to="/sign-up">Sign Up</Link>
+            </Group>
+          </form>
+        </Flex>
       </div>
     </div>
   );

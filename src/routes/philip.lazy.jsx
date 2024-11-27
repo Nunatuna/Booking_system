@@ -2,12 +2,11 @@ import {useState, useEffect} from "react"
 import { createLazyFileRoute } from '@tanstack/react-router'
 import NyBooking from '../components/NewBooking';
 import LedigeLokaler from '../components/LedigeLokaler';
-import { Title } from '@mantine/core';
-import { Text } from '@mantine/core';
 import NavBar from '../components/NavBar';
 import Spinner from "../components/Spinner";
 import { getSupabaseClient } from "../supabase/getSupabaseClient";
 import WelcomeUser from "../components/WelcomeUser";
+import CurrentDate from "../components/CurrentDate";
 
 export const Route = createLazyFileRoute('/philip')({
   component: RouteComponent,
@@ -49,9 +48,8 @@ if (loading) { // Loading spinner that appears when the data is loading
   <NavBar /> 
 <div style={styles.nybookingcontainer}>
     <div style={styles.hejallan}>
-    {/* <Title style={{margin: 0, color: '#364FC7'}} order={1}>Velkommen tilbage, Allan!</Title> */}
     <WelcomeUser />
-    <Text style={{color:'#364FC7'}} size="md">Torsdag, 14. November</Text>
+    <CurrentDate />
     </div>
       <div style={styles.container}>
         <div style={styles.component}>
