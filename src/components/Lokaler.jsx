@@ -48,6 +48,7 @@ export default function Lokaler() {
   return (
     <div style={styles.container}>
       <Title order={2} style={{ color: '#4C6EF5' }}>Vælg dato og lokale</Title>
+      {/* //Benytter os af date picker inde fra mantine, med en "onChange={setSelectedDate}" funktion, for at kunne kommunikere med vores Clickable */}
       <DatePicker
         label="Dato"
         placeholder="Velg dato"
@@ -59,17 +60,16 @@ export default function Lokaler() {
         Valgt dato: {selectedDate ? selectedDate.toLocaleDateString() : 'Ingen valgt'}
       </Text>
       <div style={styles.containerLokaler}>
-      <div style={styles.containerLokaler}>
-  {Lokaleliste.map((room, index) => (
-    <BDClickable
-      key={index}
-      room={room}
-      selectedDate={selectedDate} // Pass selected date to BDClickable
-      onClick={() => handleRoomSelect(room)}
-    />
+        {/* benytter vores lokaleliste.map for at vise lokalerne i korrekt format */}
+       {Lokaleliste.map((room, index) => (
+          <BDClickable
+             key={index}
+            room={room}
+            selectedDate={selectedDate} // passere selected date til BDClickable
+            onClick={() => handleRoomSelect(room)}
+          />
   ))}
 </div>
-      </div>
       {selectedRoom && selectedDate && (
         <LokalerTid selectedRoom={selectedRoom} selectedDate={selectedDate} />
       )}
