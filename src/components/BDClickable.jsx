@@ -26,16 +26,16 @@ const dateStyle = {
 export default function BDClickable({ room, children, selectedDate }) {
   const [isClicked, setIsClicked] = useState(false);
 
-  // Helper function to format a date to DD/MM/YYYY
+  // Vi formatere datoen til at være dansk.
   const formatDate = (date) => {
-    if (!date) return 'Ingen valgt'; // Handle missing value
+    if (!date) return 'Ingen valgt'; // Hvis ingen dato er valgt 
     return date.toLocaleDateString('da-DK');
   };
 
   return (
     <div
       className={`roomItemsStyle ${isClicked ? 'clicked' : ''}`} // Dynamically add 'clicked' class
-      onClick={() => setIsClicked(!isClicked)} // Toggle clicked state on click
+      onClick={() => setIsClicked(!isClicked)} // Klassen clicked tilføjes dynamisk til div-elementet, hvis isClicked er true. Dette kan bruges til at ændre udseendet, fx baggrundsfarve eller kant.
     >
       <div>
         <p style={roomNameLabelStyle}>
