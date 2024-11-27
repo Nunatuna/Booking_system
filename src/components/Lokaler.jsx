@@ -4,33 +4,35 @@ import BDClickable from './BDClickable';
 import LokalerTid from './LokalerTid';
 import { DatePicker } from '@mantine/dates';
 
-
-
-
 export default function Lokaler() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedRoom, setSelectedRoom] = useState(null);
 
   const styles = {
     container: {
+      display: 'flex',              // Brug Flexbox for at vise elementer side om side
+      justifyContent: 'space-between', // Sørger for at der er plads mellem de to komponenter
+      gap: '20px',                  // Lidt afstand mellem komponenterne
+      marginTop: '30px',
+    },
+    leftSection: {
+      flex: 1,                      // Giver plads til Lokaler
       backgroundColor: 'White',
       border: '1px solid lightgrey',
       padding: '30px',
-      width: '500px',
       borderRadius: '15px',
-      boxShadow: '0px 6px 10px rgba(0, 0, 0, 0.1)', // Subtle drop shadow
+      boxShadow: '0px 6px 10px rgba(0, 0, 0, 0.1)',
     },
-    containerLokaler: {
-      height: '450px',
-      borderRadius: '20px',
+    rightSection: {
+      flex: 1,                      // Giver plads til LokalerTid
+      backgroundColor: 'White',
+      border: '1px solid lightgrey',
       padding: '30px',
-      backgroundColor: '#F5F5F5',
-      marginTop: '20px',
+      borderRadius: '15px',
+      boxShadow: '0px 6px 10px rgba(0, 0, 0, 0.1)',
     },
   };
 
-
-  // Dummy room data (til test)
   const Lokaleliste = [
     { Room_name: 'Mødelokale 1' },
     { Room_name: 'Mødelokale 2' },
@@ -39,40 +41,44 @@ export default function Lokaler() {
     { Room_name: 'Mødelokale 5' },
   ];
 
-  
-
-  const handleRoomSelect = (room) => {
-    setSelectedRoom(room);
+  const handleRoomSelect = (room, date) => {
+    setSelectedRoom(room);  // Opdaterer det valgte lokale
+    setSelectedDate(date);  // Opdaterer den valgte dato
   };
 
   return (
     <div style={styles.container}>
-      <Title order={2} style={{ color: '#4C6EF5' }}>Vælg dato og lokale</Title>
-      {/* //Benytter os af date picker inde fra mantine, med en "onChange={setSelectedDate}" funktion, for at kunne kommunikere med vores Clickable */}
-      <DatePicker
-        label="Dato"
-        placeholder="Velg dato"
-        valueFormat="DD-MM-YYYY"
-        value={selectedDate}
-        onChange={setSelectedDate}
-      />
-      <Text style={{ marginTop: '20px', color: '#4C6EF5' }}>
-        Valgt dato: {selectedDate ? selectedDate.toLocaleDateString() : 'Ingen valgt'}
-      </Text>
-      <div style={styles.containerLokaler}>
-        {/* benytter vores lokaleliste.map for at vise lokalerne i korrekt format */}
-       {Lokaleliste.map((room, index) => (
-          <BDClickable
-             key={index}
-            room={room}
-            selectedDate={selectedDate} // passere selected date til BDClickable
-            onClick={() => handleRoomSelect(room)}
-          />
-  ))}
-</div>
-      {/* {selectedRoom && selectedDate && (
-        <LokalerTid selectedRoom={selectedRoom} selectedDate={selectedDate} />
-      )} */}
-</div>
+      {/* Venstre sektion for Lokaler */}
+      <div style={styles.leftSection}>
+        <Title order={2} style={{ color: '#4C6EF5' }}>Vælg dato og lokale</Title>
+        <DatePicker
+          label="Dato"
+          placeholder="Vælg dato"
+          valueFormat="DD-MM-YYYY"
+          value={selectedDate}
+          onChange={setSelectedDate}
+        />
+        <Text style={{ marginTop: '20px', color: '#4C6EF5' }}>
+          Valgt dato: {selectedDate ? selectedDate.toLocaleDateString() : 'Ingen valgt'}
+        </Text>
+        <div>
+          {Lokaleliste.map((room, index) => (
+            <BDClickable
+              key={index}
+              room={room}
+              selectedDate={selectedDate}
+              onClick={handleRoomSelect}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Højre sektion for LokalerTid */}
+      <div style={styles.rightSection}>
+        {selectedRoom && selectedDate && (
+          <LokalerTid selectedRoom={selectedRoom} selectedDate={selectedDate} />
+        )}
+      </div>
+    </div>
   );
 }

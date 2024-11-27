@@ -23,19 +23,27 @@ const dateStyle = {
   textAlign: "right",
 };
 
-export default function BDClickable({ room, children, selectedDate }) {
+export default function BDClickable({ room, children, selectedDate, onClick }) {
   const [isClicked, setIsClicked] = useState(false);
 
-  // Vi formatere datoen til at være dansk.
+  // Vi formaterer datoen til dansk
   const formatDate = (date) => {
-    if (!date) return 'Ingen valgt'; // Hvis ingen dato er valgt 
+    if (!date) return 'Ingen valgt'; // Hvis ingen dato er valgt
     return date.toLocaleDateString('da-DK');
+  };
+
+  // Håndter klik og opdater "clicked" status samt send info til forælderen
+  const handleClick = () => {
+    setIsClicked(!isClicked); // Toggle isClicked for at ændre udseendet
+    if (onClick) {
+      onClick(room, selectedDate); // Kalder callback med room og selectedDate
+    }
   };
 
   return (
     <div
-      className={`roomItemsStyle ${isClicked ? 'clicked' : ''}`} // Dynamically add 'clicked' class
-      onClick={() => setIsClicked(!isClicked)} // Klassen clicked tilføjes dynamisk til div-elementet, hvis isClicked er true. Dette kan bruges til at ændre udseendet, fx baggrundsfarve eller kant.
+      className={`roomItemsStyle ${isClicked ? 'clicked' : ''}`}
+      onClick={handleClick}
     >
       <div>
         <p style={roomNameLabelStyle}>

@@ -35,7 +35,7 @@ function RouteComponent() {
     <NavBar />
     <div style={styles.container}>
       <Lokaler />
-      <LokalerTid />
+   <LokalerTid />
     </div>
     <div style={styles.btncum}>
       <Link to="#"><Button variant="filled" color="#364FC7" size="lg" radius="xl">TILBAGE</Button></Link>

@@ -1,34 +1,27 @@
 import React from 'react'
 import PotentialTimeslots from './PotentialTimeslots'
-
-export default function () {
-  const styles = {
-    container:{
-        height: '700px',
-        backgroundColor: 'White',
-        border: '1px solid lightgrey',
-        padding: '30px',
-        width: '500px',
-        height: '600px',
-        borderRadius: '15px',
-        boxShadow: '0px 6px 10px rgba(0, 0, 0, 0.1)', 
-    },
-
-    dum:{
-        backgroundColor: '#F5F5F5',
-        padding: '30px',
-        borderRadius: '20px',
-        height: '100%',
-        textAlign: 'center'
-    }
+function LokalerTid({ selectedRoom, selectedDate }) {
+  if (!selectedRoom || !selectedDate) {
+    return null; // Hvis der ikke er valgt lokale eller dato, vis intet
   }
-  
-    return (
-    <div style={styles.container}>
-        <div style={styles.dum}>
-            Vælg et lokale for at vælge længden på din reservation.
-            <PotentialTimeslots />
-        </div>
+
+  const styles = {
+    card: {
+      padding: '20px',
+      border: '1px solid lightgrey',
+      borderRadius: '10px',
+      marginTop: '20px',
+      backgroundColor: '#FFFFFF',
+      boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+    },
+  };
+
+  return (
+    <div style={styles.card}>
+      <h3>Valgt lokale: {selectedRoom.Room_name}</h3>
+      <p>Valgt dato: {selectedDate.toLocaleDateString()}</p>
+      <PotentialTimeslots /> {/* Her vises de potentielle tidsrum */}
     </div>
-  )
+  );
 }
+export default LokalerTid;
