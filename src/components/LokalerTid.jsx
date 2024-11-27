@@ -10,8 +10,9 @@ export default function () {
         width: '500px',
         height: '600px',
         borderRadius: '15px',
-        boxShadow: '0px 6px 10px rgba(0, 0, 0, 0.1)', // Subtle drop shadow
+        boxShadow: '0px 6px 10px rgba(0, 0, 0, 0.1)', 
     },
+    
     dum:{
         backgroundColor: '#F5F5F5',
         padding: '30px',
