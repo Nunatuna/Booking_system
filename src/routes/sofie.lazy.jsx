@@ -5,6 +5,8 @@ import NewBooking from '../components/NewBooking'
 import MyBookings from '../components/MyBookings'
 import Bookcard from '../components/bookcard'
 import Callendar from '../components/Callendar'
+import ConfirmMeetingBtn from '../components/ConfirmMeetingBtn'
+import Bekraeftbooking from '../components/BekraeftBooking'
 
 export const Route = createLazyFileRoute('/sofie')({
   component: RouteComponent,
@@ -15,6 +17,8 @@ function RouteComponent() {
     <> 
         <Navbar />
         <Callendar />
+        <ConfirmMeetingBtn />
+        <Bekraeftbooking />
     </>
   )
 }

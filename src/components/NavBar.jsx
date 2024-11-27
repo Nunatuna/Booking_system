@@ -119,7 +119,6 @@ export default function NavBar() {
                <Title order={1} style={modalStyles.header}>Er du sikker på, at du vil logge af?</Title>
                 <div style={modalStyles.buttons}>
                   <Button variant="filled" color="#748FFC" size="xl" radius="xl" onClick={close}>LUK</Button>
-                  <Link to="/login" style={modalStyles.linkButton}>LOG UD</Link>
                   <SignOutButton onSignOut={handleSignOut}/>
                 </div>
               </div>

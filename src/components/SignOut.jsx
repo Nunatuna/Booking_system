@@ -26,9 +26,10 @@ function SignOutButton({ onSignOut }) {
         }
     };
 
+
     return (
-        <Button variant="outline" color="red" radius="xl" onClick={handleSignOut}>
-            Sign Out
+        <Button variant="filled" color="#364FC7" size="xl" radius="xl" onClick={handleSignOut}>
+            LOG UD
         </Button>
     );
 }
