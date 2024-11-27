@@ -70,9 +70,9 @@ export default function Lokaler() {
           />
   ))}
 </div>
-      {selectedRoom && selectedDate && (
+      {/* {selectedRoom && selectedDate && (
         <LokalerTid selectedRoom={selectedRoom} selectedDate={selectedDate} />
-      )}
-    </div>
+      )} */}
+</div>
   );
 }
