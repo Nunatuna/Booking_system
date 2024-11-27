@@ -1,55 +1,107 @@
 import React, { useState } from 'react';
-import { Button, TextInput, PasswordInput, Space, Title, Grid, Image, Flex, Container } from '@mantine/core';
+import { Button, TextInput, PasswordInput, Space, Title, Image, Flex, Text, Group } from '@mantine/core';
 import { getSupabaseClient } from '../supabase/getSupabaseClient';
 import LoginGraphic from '../img/login-graphic.png';
+import WelcomeUser from './WelcomeUser';
+import { Link } from '@tanstack/react-router';
+
+const positionStyle = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  height: "80vh",
+};
+
+const containerStyle = {
+  display: "grid",
+  gridTemplateColumns: "3fr 2fr",
+};
+
+const imageStyle = {
+  width: "90%",
+};
+
+const linkStyle = {
+  textDecoration: "none",
+  backgroundColor: "#4C6EF5",
+  padding: "6px 18px",
+  borderRadius: "24px",
+  textAlign: "center",
+  color: "white",
+  fontSize: "14px",
+  fontWeight: "500",
+}
 
 function SignIn() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const supabase = getSupabaseClient();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(''); // Store error message
+  const [loggedIn, setLoggedIn] = useState(false); // Track login status
+  const supabase = getSupabaseClient();
 
-    async function signInWithEmail() {
-        try {
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email: email,
-                password: password,
-            });
-            // sign in error messages
-            if (error) {
-                console.error("Error signing in:", error.message, error.details);
-            } else {
-                console.log("User data:", data);
-            }
-        } catch (err) {
-            console.error("Unexpected error:", err);
-        }
+  async function signInWithEmail() {
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
+      });
+
+      if (error) {
+        console.error("Error signing in:", error.message);
+        setErrorMessage("Invalid email or password. Please try again."); // Set user-friendly error message
+      } else {
+        setErrorMessage(''); // Clear any previous errors on successful login
+        setLoggedIn(true); // Set login state to true on success
+      }
+    } catch (err) {
+      console.error("Unexpected error:", err);
+      setErrorMessage("An unexpected error occurred. Please try again later.");
     }
+  }
 
-    const handleSignin = (event) => {
-        event.preventDefault();
-        console.log("Attempting sign in with:", email, password);
-        signInWithEmail();
-    };
+  const handleSignin = (event) => {
+    event.preventDefault();
+    signInWithEmail();
+  };
 
-    return (
-        <Grid grow gutter={{ base: 5, xs: 'md', md: 'xl', xl: 50 }}>
-            <Grid.Col span={8}>
-            <Image radius="md" src={LoginGraphic} />
-            </Grid.Col>
-            <Grid.Col span={4}>
-                <Flex justify="center" direction="column" style={{ height: "100%"}}>
-                    <Title style={{ marginBottom: "1rem" }} order={1}>Sign in</Title>
-                    <form>
-                        <TextInput placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                            <Space h="lg"/>
-                        <PasswordInput placeholder="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
-                            <Space h="lg"/>
-                        <Button onClick={handleSignin} variant="filled" color="#364FC7" radius="xl">Login</Button>
-                    </form>
-                </Flex>
-            </Grid.Col>
-        </Grid>
-    );
+  if (loggedIn) {
+    return <WelcomeUser />; // Show WelcomeUser after login
+  }
+
+  return (
+    <div style={positionStyle}>
+      <div style={containerStyle}>
+          <Image style={imageStyle} radius="md" src={LoginGraphic} />
+          <Flex justify="center" direction="column" style={{ height: "100%" }}>
+            <Title style={{ marginBottom: "1rem" }} order={1}>Login</Title>
+            <form>
+              <TextInput
+                placeholder="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <Space h="lg" />
+              <PasswordInput
+                placeholder="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <Space h="lg" />
+              {errorMessage && ( // Show error message if it exists
+                <Text color="red" size="14px" style={{ marginBottom: "1rem" }}>
+                  {errorMessage}
+                </Text>
+              )}
+              <Group grow>
+                <Button onClick={handleSignin} variant="filled" color="#364FC7" radius="xl">Login</Button>
+                <Link style={linkStyle} variant="filled" to="/sign-up">Sign Up</Link>
+              </Group>
+            </form>
+          </Flex>
+      </div>
+    </div>
+  );
 }
 
 export default SignIn;
