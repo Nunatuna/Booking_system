@@ -4,10 +4,13 @@ import { DatePicker } from '@mantine/dates';
 import React, { useState } from 'react';
 
 
+const [selectedDate, setSelectedDate] = useState(null);
+
+
+//Benytter os af date picker inde fra mantine, med en "onChange={setSelectedDate}" funktion, for at kunne kommunikere med vores Clickable
 export default function Callender2() {
   return (
-    <div>
-      <Title order={2} style={{ color: '#4C6EF5' }}>Vælg dato og lokale</Title>
+    <div> 
       <DatePicker
         label="Dato"
         placeholder="Velg dato"

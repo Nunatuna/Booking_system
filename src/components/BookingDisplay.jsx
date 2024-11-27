@@ -32,7 +32,7 @@ const roomLabelStyle = {
 
 export default function BookingDisplay({ room, children }) {
 
-     // Helper function to format date and time to DD/MM & HH:MM
+     // Hjælpe funktion to at definere dat og tid
      const formatDateTime = (dateTime) => {
         const date = new Date(dateTime);
         return date.toLocaleString('en-US', { 

@@ -1,4 +1,5 @@
 import React from 'react'
+import PotentialTimeslots from './PotentialTimeslots'
 
 export default function () {
   const styles = {
@@ -10,8 +11,9 @@ export default function () {
         width: '500px',
         height: '600px',
         borderRadius: '15px',
-        boxShadow: '0px 6px 10px rgba(0, 0, 0, 0.1)', // Subtle drop shadow
+        boxShadow: '0px 6px 10px rgba(0, 0, 0, 0.1)', 
     },
+
     dum:{
         backgroundColor: '#F5F5F5',
         padding: '30px',
@@ -25,6 +27,7 @@ export default function () {
     <div style={styles.container}>
         <div style={styles.dum}>
             Vælg et lokale for at vælge længden på din reservation.
+            <PotentialTimeslots />
         </div>
     </div>
   )

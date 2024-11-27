@@ -1,9 +1,14 @@
-import React from 'react'
+export default function PotentialTimeslots() {
+  const timeslots = ['08:00 - 09:00', '09:00 - 10:00', '10:00 - 11:00'];
 
- export default function PotentialTimeslots() {
   return (
     <div>
-        potentielle tider på baggrund af vores lokale lsite og at man kan book 2 timer af gangen fra 8 til 16.
+      <h4>Mulige tidsrum:</h4>
+      <ul>
+        {timeslots.map((slot, index) => (
+          <li key={index}>{slot}</li>
+        ))}
+      </ul>
     </div>
-  )
+  );
 }
