@@ -39,6 +39,8 @@ export default function Lokaler() {
     { Room_name: 'Mødelokale 5' },
   ];
 
+  
+
   const handleRoomSelect = (room) => {
     setSelectedRoom(room);
   };
@@ -57,13 +59,16 @@ export default function Lokaler() {
         Valgt dato: {selectedDate ? selectedDate.toLocaleDateString() : 'Ingen valgt'}
       </Text>
       <div style={styles.containerLokaler}>
-        {Lokaleliste.map((room, index) => (
-          <BDClickable
-            key={index}
-            room={room}
-            onClick={() => handleRoomSelect(room)}
-          />
-        ))}
+      <div style={styles.containerLokaler}>
+  {Lokaleliste.map((room, index) => (
+    <BDClickable
+      key={index}
+      room={room}
+      selectedDate={selectedDate} // Pass selected date to BDClickable
+      onClick={() => handleRoomSelect(room)}
+    />
+  ))}
+</div>
       </div>
       {selectedRoom && selectedDate && (
         <LokalerTid selectedRoom={selectedRoom} selectedDate={selectedDate} />
