@@ -62,38 +62,36 @@ export default function Lokaler() {
       return;
     }
   
-    // Sørg for at selectedDate er et Date objekt
-    const date = new Date(selectedDate); // Tjek om selectedDate er et gyldigt Date-objekt
-    if (isNaN(date)) {
-      alert('Ugyldig dato!');
+    const formattedDate = selectedDate.toISOString().split('T')[0]; // Sørg for, at datoen er i 'YYYY-MM-DD'
+    const formattedStartTime = selectedSlot; // Forventet i 'HH:mm' format
+  
+    // Hent den aktuelle bruger
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    
+    if (userError || !user) {
+      alert('Bruger ikke logget ind! Venligst log ind først.');
+      console.error('Fejl ved hentning af bruger:', userError);
       return;
     }
   
-    // Split selectedSlot på ' - ' for at få start- og sluttid
-    const [startTime, endTime] = selectedSlot.split(' - ');
+    const userEmail = user.email;
   
-    // Sørg for at startTime og endTime er gyldige tidsstrenge
-    const [startHour, startMinute] = startTime.split(':');
-    const [endHour, endMinute] = endTime.split(':');
-  
-    // Opret en ISO-dato med kun dato og tid
-    const formattedDate = date.toISOString().split('T')[0]; // Formaterer datoen som 'YYYY-MM-DD'
-    const formattedStartTime = `${startHour}:${startMinute}`; // Tid som 'HH:mm'
-    const formattedEndTime = `${endHour}:${endMinute}`; // Tid som 'HH:mm'
-  
+    // Indsæt bookingdata i Supabase
     const { data, error } = await supabase
-      .from('Bookings') // Navnet på din tabel i Supabase
+      .from('MeetingRooms') // Navnet på din tabel i Supabase
       .insert([
         {
-          Dato: formattedDate, // Datoen i 'YYYY-MM-DD'
+          Dato: formattedDate,       // Datoen i 'YYYY-MM-DD'
           Lokale: selectedRoom.Room_name, // Lokale navn
-          Tid: formattedStartTime, // Start tid som 'HH:mm'
-          isbooked: true, // Sætter lokalet som booket
+          Tid: formattedStartTime,  // Start tid som 'HH:mm'
+          Isbooked: true,           // Sætter lokalet som booket
+          User: userEmail,          // Email for den aktuelle bruger
         },
       ]);
   
     if (error) {
       console.error('Fejl ved indsættelse af data:', error.message);
+      alert('Kunne ikke oprette booking. Prøv igen.');
     } else {
       console.log('Booking oprettet:', data);
       alert('Booking oprettet!');
