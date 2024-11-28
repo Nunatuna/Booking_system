@@ -4,7 +4,9 @@ import BDClickable from './BDClickable';
 import LokalerTid from './LokalerTid';
 import { DatePicker } from '@mantine/dates';
 
+
 export default function Lokaler() {
+
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedRoom, setSelectedRoom] = useState(null);
 
@@ -12,7 +14,7 @@ export default function Lokaler() {
     container: {
       display: 'flex',              // Brug Flexbox for at vise elementer side om side
       justifyContent: 'space-between', // Sørger for at der er plads mellem de to komponenter
-      gap: '20px',                  // Lidt afstand mellem komponenterne
+      gap: '50px',                  // Lidt afstand mellem komponenterne
       marginTop: '30px',
     },
     leftSection: {
@@ -30,7 +32,9 @@ export default function Lokaler() {
       padding: '30px',
       borderRadius: '15px',
       boxShadow: '0px 6px 10px rgba(0, 0, 0, 0.1)',
+      width: '617px',
     },
+    
   };
 
   const Lokaleliste = [
@@ -75,6 +79,8 @@ export default function Lokaler() {
 
       {/* Højre sektion for LokalerTid */}
       <div style={styles.rightSection}>
+      {/* <h3>Valgt lokale: {selectedRoom.Room_name}</h3>
+      <p>Valgt dato: {selectedDate.toLocaleDateString()}</p> */}
         {selectedRoom && selectedDate && (
           <LokalerTid selectedRoom={selectedRoom} selectedDate={selectedDate} />
         )}

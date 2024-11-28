@@ -1,9 +1,7 @@
 import React from 'react'
 import PotentialTimeslots from './PotentialTimeslots'
 function LokalerTid({ selectedRoom, selectedDate }) {
-  if (!selectedRoom || !selectedDate) {
-    return null; // Hvis der ikke er valgt lokale eller dato, vis intet
-  }
+
 
   const styles = {
     card: {
@@ -15,7 +13,10 @@ function LokalerTid({ selectedRoom, selectedDate }) {
       boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
     },
   };
-
+  if (!selectedRoom || !selectedDate) {
+    return(
+    <div> <h1>Ingen lokale eller dato valgt</h1></div>)
+  }
   return (
     <div style={styles.card}>
       <h3>Valgt lokale: {selectedRoom.Room_name}</h3>
