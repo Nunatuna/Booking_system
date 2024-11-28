@@ -7,6 +7,7 @@ import LokalerTid from './LokalerTid';
 import { DatePickerInput } from '@mantine/dates';
 import { getSupabaseClient } from '../supabase/getSupabaseClient';
 import { space } from 'postcss/lib/list';
+import { Link } from '@tanstack/react-router'; // This is correct import from @tanstack/react-router
 
 
 export default function Lokaler() {
@@ -171,7 +172,7 @@ export default function Lokaler() {
          <Text><b>Tid:</b> {selectedSlot ? selectedSlot : 'Ingen valgt'}</Text>
           <div style={modalStyles.container}>
             <Button variant="filled" color="#748FFC" size="lg" radius="xl" onClick={close}>Fortryd</Button>
-           <Button variant="filled" color="#364FC7" size="lg" radius="xl" onClick={handleSubmit}>Bekræft</Button>
+            <Link to="/"><Button variant="filled" color="#364FC7" size="lg" radius="xl" onClick={handleSubmit}>Bekræft</Button></Link>
           </div>
       </Modal>
       <Button variant="filled" color="#748FFC" size="lg" radius="xl" onClick={open}>Book</Button>

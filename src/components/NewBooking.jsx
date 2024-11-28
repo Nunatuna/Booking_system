@@ -14,7 +14,7 @@ function NyBooking() {
     <div style={styles.container}>
       <div style={styles.bookingCard}>
       <Title style={styles.text} order={2}>Ny booking?</Title>
-      <Link to="/calendar">
+      <Link to="/resevere">
       <Button style={styles.button} onClick={handleBookingClick} variant="filled" color="indigo" size="lg" radius="xl">BOOK</Button>
       </Link>
       </div>
