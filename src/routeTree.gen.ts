@@ -22,7 +22,6 @@ const ResevereLazyImport = createFileRoute('/resevere')()
 const PhilipLazyImport = createFileRoute('/philip')()
 const LoginLazyImport = createFileRoute('/login')()
 const BookcardtestLazyImport = createFileRoute('/bookcardtest')()
-const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
@@ -63,12 +62,6 @@ const BookcardtestLazyRoute = BookcardtestLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/bookcardtest.lazy').then((d) => d.Route))
 
-const AboutLazyRoute = AboutLazyImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
-
 const IndexLazyRoute = IndexLazyImport.update({
   id: '/',
   path: '/',
@@ -84,13 +77,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutLazyImport
       parentRoute: typeof rootRoute
     }
     '/bookcardtest': {
@@ -142,7 +128,6 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
-  '/about': typeof AboutLazyRoute
   '/bookcardtest': typeof BookcardtestLazyRoute
   '/login': typeof LoginLazyRoute
   '/philip': typeof PhilipLazyRoute
@@ -153,7 +138,6 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
-  '/about': typeof AboutLazyRoute
   '/bookcardtest': typeof BookcardtestLazyRoute
   '/login': typeof LoginLazyRoute
   '/philip': typeof PhilipLazyRoute
@@ -165,7 +149,6 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
-  '/about': typeof AboutLazyRoute
   '/bookcardtest': typeof BookcardtestLazyRoute
   '/login': typeof LoginLazyRoute
   '/philip': typeof PhilipLazyRoute
@@ -178,7 +161,6 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/about'
     | '/bookcardtest'
     | '/login'
     | '/philip'
@@ -188,7 +170,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/about'
     | '/bookcardtest'
     | '/login'
     | '/philip'
@@ -198,7 +179,6 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/about'
     | '/bookcardtest'
     | '/login'
     | '/philip'
@@ -210,7 +190,6 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
-  AboutLazyRoute: typeof AboutLazyRoute
   BookcardtestLazyRoute: typeof BookcardtestLazyRoute
   LoginLazyRoute: typeof LoginLazyRoute
   PhilipLazyRoute: typeof PhilipLazyRoute
@@ -221,7 +200,6 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
-  AboutLazyRoute: AboutLazyRoute,
   BookcardtestLazyRoute: BookcardtestLazyRoute,
   LoginLazyRoute: LoginLazyRoute,
   PhilipLazyRoute: PhilipLazyRoute,
@@ -241,7 +219,6 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/about",
         "/bookcardtest",
         "/login",
         "/philip",
@@ -252,9 +229,6 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.lazy.jsx"
-    },
-    "/about": {
-      "filePath": "about.lazy.jsx"
     },
     "/bookcardtest": {
       "filePath": "bookcardtest.lazy.jsx"
