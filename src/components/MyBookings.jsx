@@ -49,14 +49,32 @@ const MyBookings = () => {
             setLoading(true);
             const supabase = getSupabaseClient();
 
-            const { data, error } = await supabase
-                .from("MeetingRooms")
-                .select("id, Room_name, Start_time, End_time");
+            // Get the currently logged-in user
+            const {
+                data: { user },
+                error: authError,
+            } = await supabase.auth.getUser();
 
-            if (error) {
-                console.error("Error fetching meeting rooms:", error);
+            if (authError) {
+                console.error("Error getting user:", authError);
+                setLoading(false);
+                return;
+            }
+
+            if (user) {
+                // Fetch only bookings where "User" column matches the logged-in user's email (case-insensitive)
+                const { data, error } = await supabase
+                    .from("MeetingRooms")
+                    .select("id, Room_name, Start_time, End_time")
+                    .ilike("User", user.email); // ilike performs case-insensitive match
+
+                if (error) {
+                    console.error("Error fetching meeting rooms:", error);
+                } else {
+                    setRooms(data);
+                }
             } else {
-                setRooms(data);
+                console.error("No user logged in.");
             }
             setLoading(false);
         }

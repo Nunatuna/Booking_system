@@ -27,7 +27,7 @@ const WelcomeUser = () => {
 
   return (
     <div style={containerStyle}>
-      {displayName ? <h2 style={{ margin: "0px" }}>Velkommen tilbage, {displayName}!</h2> : <p>Loading...</p>}
+      {displayName ? <h2 style={{ margin: "0px" }}>Velkommen tilbage, {displayName}!</h2> : <p>Ikke logget ind</p>}
     </div>
   );
 };
