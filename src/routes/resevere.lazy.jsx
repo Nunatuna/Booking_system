@@ -19,13 +19,13 @@ function RouteComponent() {
    allignItems: 'center',
    height: 'fit-content',
    gap: '50px',
-   marginTop: '30px',
+
    marginBottom: '20px',
  },
  btncum: {
    display: 'flex',
    justifyContent: 'space-between',
-   width: '70%',
+   width: '65%',
    margin: '0 auto',
  }
 }
@@ -37,7 +37,6 @@ function RouteComponent() {
       <Lokaler />
     </div>
     <div style={styles.btncum}>
-      <Link to="#"><Button variant="filled" color="#364FC7" size="lg" radius="xl">TILBAGE</Button></Link>
       <Link to="#"><Button variant="filled" color="#364FC7" size="lg" radius="xl">TILBAGE</Button></Link>
     </div>
   </>

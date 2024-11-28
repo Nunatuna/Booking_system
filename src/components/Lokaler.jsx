@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Title, Text } from '@mantine/core';
+import { Title, Text, Button } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { Modal } from '@mantine/core';
 import BDClickable from './BDClickable';
 import LokalerTid from './LokalerTid';
 import { DatePickerInput } from '@mantine/dates';
 import { getSupabaseClient } from '../supabase/getSupabaseClient';
+import { space } from 'postcss/lib/list';
 
 
 export default function Lokaler() {
@@ -96,7 +99,21 @@ export default function Lokaler() {
     }
   };
   
-  
+    //modal 
+    const [opened, { open, close }] = useDisclosure(false);
+
+    //modal style
+    const modalStyles = {
+      header: {
+        color: '#364FC7',
+        marginBottom: '15px',
+      },
+      container:{
+        display: 'flex',
+        justifyContent: 'space-between',
+        marginTop: '20px',
+      }
+    }
 
   return (
     <div style={styles.container}>
@@ -137,7 +154,29 @@ export default function Lokaler() {
           setSelectedSlot={setSelectedSlot}
         />
         {/* Tilføj en knap til at sende dataen */}
-        <button onClick={handleSubmit}>Opret Booking</button>
+        
+      <Modal 
+        opened={opened} 
+        onClose={close} 
+        centered
+        padding="2rem"
+        overlayProps={{
+          backgroundOpacity: 0.55,
+          blur: 3,
+        }}
+        >
+         <Title order={2} style={modalStyles.header}>Er følgende oplysninger korrekte?</Title>
+         <Text> <b>Dato:</b> {selectedDate ? selectedDate.toLocaleDateString() : 'Ingen valgt'}</Text>
+         <Text> <b>Lokale:</b> {selectedRoom ? selectedRoom.Room_name : 'Ingen valgt'}</Text>
+         <Text><b>Tid:</b> {selectedSlot ? selectedSlot : 'Ingen valgt'}</Text>
+          <div style={modalStyles.container}>
+            <Button variant="filled" color="#748FFC" size="lg" radius="xl" onClick={close}>Fortryd</Button>
+           <Button variant="filled" color="#364FC7" size="lg" radius="xl" onClick={handleSubmit}>Bekræft</Button>
+          </div>
+      </Modal>
+      <Button variant="filled" color="#748FFC" size="lg" radius="xl" onClick={open}>Book</Button>
+
+
       </div>
     </div>
   );
