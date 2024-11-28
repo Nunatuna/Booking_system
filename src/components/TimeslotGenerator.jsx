@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const buttonStyle = {
   display: "flex",
@@ -24,9 +24,7 @@ const clickedButtonStyle = {
   color: "#fff",         // Lysere tekst
 };
 
-const TimeslotGenerator = ({ startHour, endHour, interval, onSlotClick }) => {
-  const [selectedSlot, setSelectedSlot] = useState(null); // Holder styr på valgt tidsrum
-
+const TimeslotGenerator = ({ startHour, endHour, interval, selectedSlot, setSelectedSlot }) => {
   const generateTimeslots = () => {
     return Array.from({ length: (endHour - startHour) / interval }, (_, index) => {
       const start = startHour + index * interval;
@@ -39,9 +37,6 @@ const TimeslotGenerator = ({ startHour, endHour, interval, onSlotClick }) => {
 
   const handleClick = (slot) => {
     setSelectedSlot(slot); // Opdaterer valgt tidsrum
-    if (onSlotClick) {
-      onSlotClick(slot); // Kalder callback-funktion, hvis den er angivet
-    }
   };
 
   return (

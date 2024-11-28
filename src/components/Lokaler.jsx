@@ -50,22 +50,18 @@ export default function Lokaler() {
 
   return (
     <div style={styles.container}>
-      {/* Venstre sektion for Lokaler */}
       <div style={styles.leftSection}>
         <Title order={2} style={{ color: '#4C6EF5' }}>
           Vælg dato og lokale
         </Title>
 
-        {/* DateTimePicker som kun dato */}
         <DatePickerInput
           label="Dato"
           placeholder="Vælg dato"
           value={selectedDate}
           onChange={setSelectedDate}
           valueFormat="DD-MM-YYYY"
-          clearable // Optional, allows clearing the date if needed
-          timeFormat={false} // Deaktiverer tidsvælgeren
-          style={{ width: '100%' }} // Ensures it's full-width and consistent
+          style={{ width: '100%' }}
         />
 
         <Text style={{ marginTop: '20px', color: '#4C6EF5' }}>
@@ -83,10 +79,13 @@ export default function Lokaler() {
         </div>
       </div>
 
-      {/* Højre sektion for LokalerTid */}
       <div style={styles.rightSection}>
-        {/* LokalerTid vises altid */}
-        <LokalerTid selectedRoom={selectedRoom} selectedDate={selectedDate} selectedSlot={selectedSlot} setSelectedSlot={setSelectedSlot} />
+        <LokalerTid
+          selectedRoom={selectedRoom}
+          selectedDate={selectedDate}
+          selectedSlot={selectedSlot}
+          setSelectedSlot={setSelectedSlot}
+        />
       </div>
     </div>
   );
