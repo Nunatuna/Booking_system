@@ -3,6 +3,8 @@ import { Title, Text } from '@mantine/core';
 import BDClickable from './BDClickable';
 import LokalerTid from './LokalerTid';
 import { DatePickerInput } from '@mantine/dates';
+import { getSupabaseClient } from '../supabase/getSupabaseClient';
+
 
 export default function Lokaler() {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -48,6 +50,54 @@ export default function Lokaler() {
     setSelectedDate(date);
   };
 
+  const supabase = getSupabaseClient();  // Initialiser Supabase-klienten
+  console.log(supabase);
+  const handleSubmit = async () => {
+    if (!selectedDate || !selectedRoom || !selectedSlot) {
+      alert('Alle oplysninger skal vælges!');
+      return;
+    }
+  
+    // Sørg for at selectedDate er et Date objekt
+    const date = new Date(selectedDate); // Tjek om selectedDate er et gyldigt Date-objekt
+    if (isNaN(date)) {
+      alert('Ugyldig dato!');
+      return;
+    }
+  
+    // Split selectedSlot på ' - ' for at få start- og sluttid
+    const [startTime, endTime] = selectedSlot.split(' - ');
+  
+    // Sørg for at startTime og endTime er gyldige tidsstrenge
+    const [startHour, startMinute] = startTime.split(':');
+    const [endHour, endMinute] = endTime.split(':');
+  
+    // Opret en ISO-dato med kun dato og tid
+    const formattedDate = date.toISOString().split('T')[0]; // Formaterer datoen som 'YYYY-MM-DD'
+    const formattedStartTime = `${startHour}:${startMinute}`; // Tid som 'HH:mm'
+    const formattedEndTime = `${endHour}:${endMinute}`; // Tid som 'HH:mm'
+  
+    const { data, error } = await supabase
+      .from('Bookings') // Navnet på din tabel i Supabase
+      .insert([
+        {
+          Dato: formattedDate, // Datoen i 'YYYY-MM-DD'
+          Lokale: selectedRoom.Room_name, // Lokale navn
+          Tid: formattedStartTime, // Start tid som 'HH:mm'
+          isbooked: true, // Sætter lokalet som booket
+        },
+      ]);
+  
+    if (error) {
+      console.error('Fejl ved indsættelse af data:', error.message);
+    } else {
+      console.log('Booking oprettet:', data);
+      alert('Booking oprettet!');
+    }
+  };
+  
+  
+
   return (
     <div style={styles.container}>
       <div style={styles.leftSection}>
@@ -86,6 +136,8 @@ export default function Lokaler() {
           selectedSlot={selectedSlot}
           setSelectedSlot={setSelectedSlot}
         />
+        {/* Tilføj en knap til at sende dataen */}
+        <button onClick={handleSubmit}>Opret Booking</button>
       </div>
     </div>
   );
