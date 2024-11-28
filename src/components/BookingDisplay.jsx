@@ -32,10 +32,10 @@ const roomLabelStyle = {
 
 export default function BookingDisplay({ room, children }) {
 
-     // Hjælpe funktion to at definere dat og tid
+     // Hjælpe funktion to at definere dat og tid i dansk  GPT
      const formatDateTime = (dateTime) => {
         const date = new Date(dateTime);
-        return date.toLocaleString('en-US', { 
+        return date.toLocaleString('da-DK', { 
           day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false
         });
       };

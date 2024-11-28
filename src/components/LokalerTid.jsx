@@ -1,34 +1,32 @@
-import React from 'react'
-import PotentialTimeslots from './PotentialTimeslots'
+import React from 'react';
+import PotentialTimeslots from './PotentialTimeslots';
 
-export default function () {
+function LokalerTid({ selectedRoom, selectedDate, selectedSlot, setSelectedSlot }) {
   const styles = {
-    container:{
-        height: '700px',
-        backgroundColor: 'White',
-        border: '1px solid lightgrey',
-        padding: '30px',
-        width: '500px',
-        height: '600px',
-        borderRadius: '15px',
-        boxShadow: '0px 6px 10px rgba(0, 0, 0, 0.1)', 
+    message: {
+      fontSize: '16px',
+      color: 'red',
+      fontWeight: 'bold',
+      textAlign: 'center',
+      marginTop: '20px',
     },
+  };
 
-    dum:{
-        backgroundColor: '#F5F5F5',
-        padding: '30px',
-        borderRadius: '20px',
-        height: '100%',
-        textAlign: 'center'
-    }
-  }
-  
-    return (
-    <div style={styles.container}>
-        <div style={styles.dum}>
-            Vælg et lokale for at vælge længden på din reservation.
-            <PotentialTimeslots />
-        </div>
+  return (
+    <div>
+      {/* Vis besked, hvis der mangler enten selectedRoom eller selectedDate */}
+      {!selectedRoom || !selectedDate ? (
+        <p style={styles.message}>Intet Lokale eller Dato valgt</p>
+      ) : (
+        <>
+          <h3>Valgt lokale: {selectedRoom.Room_name}</h3>
+          <p>Valgt dato: {selectedDate.toLocaleDateString()}</p>
+          {/* Send selectedSlot og setSelectedSlot videre til PotentialTimeslots */}
+          <PotentialTimeslots selectedSlot={selectedSlot} setSelectedSlot={setSelectedSlot} />
+        </>
+      )}
     </div>
-  )
+  );
 }
+
+export default LokalerTid;
