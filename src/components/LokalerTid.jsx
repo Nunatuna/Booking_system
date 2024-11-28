@@ -21,6 +21,7 @@ function LokalerTid({ selectedRoom, selectedDate }) {
       <h3>Valgt lokale: {selectedRoom.Room_name}</h3>
       <p>Valgt dato: {selectedDate.toLocaleDateString()}</p>
       <PotentialTimeslots /> {/* Her vises de potentielle tidsrum */}
+
     </div>
   );
 }

@@ -1,14 +1,11 @@
-export default function PotentialTimeslots() {
-  const timeslots = ['08:00 - 09:00', '09:00 - 10:00', '10:00 - 11:00'];
+import React from 'react';
+import TimeslotGenerator from './TimeslotGenerator';
 
+export default function PotentialTimeslots() {
   return (
     <div>
-      <h4>Mulige tidsrum:</h4>
-      <ul>
-        {timeslots.map((slot, index) => (
-          <li key={index}>{slot}</li>
-        ))}
-      </ul>
+      <h2>Vælg et tidsrum:</h2>
+      <TimeslotGenerator startHour={8} endHour={16} interval={2} />
     </div>
   );
 }
