@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { Title, Text } from '@mantine/core';
 import BDClickable from './BDClickable';
 import LokalerTid from './LokalerTid';
-import { DateTimePicker } from '@mantine/dates'; // Using DateTimePicker
+import { DatePickerInput } from '@mantine/dates';
 
 export default function Lokaler() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedRoom, setSelectedRoom] = useState(null);
+  const [selectedSlot, setSelectedSlot] = useState(null);
 
   const styles = {
     container: {
@@ -55,15 +56,16 @@ export default function Lokaler() {
           Vælg dato og lokale
         </Title>
 
-        {/* DateTimePicker used with min time restriction */}
-        <DateTimePicker
+        {/* DateTimePicker som kun dato */}
+        <DatePickerInput
           label="Dato"
           placeholder="Vælg dato"
           value={selectedDate}
           onChange={setSelectedDate}
           valueFormat="DD-MM-YYYY"
-          // Disable time picker to only show date
-          timeFormat={false} 
+          clearable // Optional, allows clearing the date if needed
+          timeFormat={false} // Deaktiverer tidsvælgeren
+          style={{ width: '100%' }} // Ensures it's full-width and consistent
         />
 
         <Text style={{ marginTop: '20px', color: '#4C6EF5' }}>
@@ -84,7 +86,7 @@ export default function Lokaler() {
       {/* Højre sektion for LokalerTid */}
       <div style={styles.rightSection}>
         {/* LokalerTid vises altid */}
-        <LokalerTid selectedRoom={selectedRoom} selectedDate={selectedDate} />
+        <LokalerTid selectedRoom={selectedRoom} selectedDate={selectedDate} selectedSlot={selectedSlot} setSelectedSlot={setSelectedSlot} />
       </div>
     </div>
   );
