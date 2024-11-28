@@ -65,7 +65,7 @@ const MyBookings = () => {
                 // Fetch only bookings where "User" column matches the logged-in user's email (case-insensitive)
                 const { data, error } = await supabase
                     .from("MeetingRooms")
-                    .select("id, Room_name, Start_time, End_time")
+                    .select("id, Lokale, Dato, Tid, Isbooked")
                     .ilike("User", user.email); // ilike performs case-insensitive match
 
                 if (error) {
@@ -92,11 +92,16 @@ const MyBookings = () => {
 
     const formatDateTime = (dateTime) => {
         const date = new Date(dateTime);
-        return date.toLocaleString('en-US', { 
-            day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false //simplifies the date and time
+        return date.toLocaleString('da-DK', {
+          year: 'numeric', // Inkluder året
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false, // 24-timers format
         });
-    };
-
+      };
+      
     return (
         <div style={containerStyle}>
             <Title c="#364FC7" order={1} style={{ marginBottom: "2rem" }}>My Bookings</Title>
@@ -106,8 +111,8 @@ const MyBookings = () => {
                         {rooms.map((room) => (
                             <Group key={room.id} style={roomItemsStyle}>
                                 <div>
-                                    <Text c="#364FC7" fw={500} size="md">{room.Room_name}</Text>
-                                    <Text fw={400} size="md">{formatDateTime(room.Start_time)} - {formatDateTime(room.End_time)}</Text>
+                                    <Text c="#364FC7" fw={500} size="md">{room.Lokale}</Text>
+                                    <Text fw={400} size="md">{formatDateTime(room.Dato)}</Text>
                                 </div>
                                 <CancelBookingBtn roomId={room.id} onCancel={removeRoom} />
                             </Group>
