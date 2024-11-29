@@ -1,4 +1,4 @@
-import{r as i,j as e,g as y,N as V,t as u,L as p,M as m}from"./index-B8qeVk3N.js";import{T as x}from"./Text-Dgvuyz0h.js";import{T as k}from"./Title-DeOo52AM.js";function M(t=!1,o){const{onOpen:l,onClose:n}={},[s,r]=i.useState(t),d=i.useCallback(()=>{r(a=>a||(l==null||l(),!0))},[l]),c=i.useCallback(()=>{r(a=>a&&(n==null||n(),!1))},[n]),C=i.useCallback(()=>{s?c():d()},[c,d,s]);return[s,{open:d,close:c,toggle:C}]}/**
+import{r as i,j as e,g as y,P as V,v as u,L as p,M as m}from"./index-CshX0Usn.js";import{T as x}from"./Text-BwQU1Wt_.js";import{T as k}from"./Title-BWHtgqtw.js";function M(t=!1,o){const{onOpen:l,onClose:n}={},[s,r]=i.useState(t),d=i.useCallback(()=>{r(a=>a||(l==null||l(),!0))},[l]),c=i.useCallback(()=>{r(a=>a&&(n==null||n(),!1))},[n]),C=i.useCallback(()=>{s?c():d()},[c,d,s]);return[s,{open:d,close:c,toggle:C}]}/**
  * @license @tabler/icons-react v3.22.0 - MIT
  *
  * This source code is licensed under the MIT license.
