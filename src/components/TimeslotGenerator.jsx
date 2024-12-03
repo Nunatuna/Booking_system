@@ -17,7 +17,7 @@ const buttonStyle = {
   color: "#364FC7",
   transition: "background-color 0.3s, color 0.3s",
 };
-
+// Chatties
 const clickedButtonStyle = {
   ...buttonStyle,
   background: "#364FC7", // Mørkere baggrund

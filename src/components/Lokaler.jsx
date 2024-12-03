@@ -40,7 +40,7 @@ export default function Lokaler() {
       width: '617px',
     },
   };
-
+// Lokale liste er hardcodet ved hjælp af props, kan ændres i fremtiden til Database if needed
   const Lokaleliste = [
     { Room_name: 'Mødelokale 1' },
     { Room_name: 'Mødelokale 2' },
