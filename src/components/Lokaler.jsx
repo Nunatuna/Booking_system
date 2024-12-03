@@ -170,7 +170,7 @@ export default function Lokaler() {
          <Text><b>Tid:</b> {selectedSlot ? selectedSlot : 'Ingen valgt'}</Text>
           <div style={modalStyles.container}>
             <Button variant="filled" color="#748FFC" size="lg" radius="xl" onClick={close}>Fortryd</Button>
-            <Link to="/"><Button variant="filled" color="#364FC7" size="lg" radius="xl" onClick={handleSubmit}>Bekræft</Button></Link>
+            <Link to="/MineBookinger"><Button variant="filled" color="#364FC7" size="lg" radius="xl" onClick={handleSubmit}>Bekræft</Button></Link>
           </div>
       </Modal>
       <Button variant="filled" color="#748FFC" size="lg" radius="xl" onClick={open}>Book</Button>

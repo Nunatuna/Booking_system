@@ -37,7 +37,7 @@ function RouteComponent() {
       <Lokaler />
     </div>
     <div style={styles.btncum}>
-      <Link to="/philip"><Button variant="filled" color="#364FC7" size="lg" radius="xl">TILBAGE</Button></Link>
+      <Link to="/OpretBooking"><Button variant="filled" color="#364FC7" size="lg" radius="xl">TILBAGE</Button></Link>
     </div>
   </>
   )

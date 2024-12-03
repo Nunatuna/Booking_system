@@ -19,9 +19,7 @@ function RootRouteWithLayout() {
     <>
       <div style={{ display: "flex", gap: "20px"}}>
         <Link to="/">Home</Link>
-        <Link to="/sofie">sofie test</Link>
-        <Link to="/philip">Philip test</Link>
-        <Link to="/calendar">calendr</Link>
+        <Link to="/OpretBooking">Philip test</Link>
         <Link to="/resevere">resevere</Link>
         <Link to="/login">login</Link>
         <Link to="/sign-up">Sign Up</Link>

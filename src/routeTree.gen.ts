@@ -16,22 +16,14 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
-const SofieLazyImport = createFileRoute('/sofie')()
 const SignUpLazyImport = createFileRoute('/sign-up')()
 const ResevereLazyImport = createFileRoute('/resevere')()
-const PhilipLazyImport = createFileRoute('/philip')()
-const MybookingsLazyImport = createFileRoute('/mybookings')()
-const LoginLazyImport = createFileRoute('/login')()
 const BookcardtestLazyImport = createFileRoute('/bookcardtest')()
+const OpretBookingLazyImport = createFileRoute('/OpretBooking')()
+const MineBookingerLazyImport = createFileRoute('/MineBookinger')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
-
-const SofieLazyRoute = SofieLazyImport.update({
-  id: '/sofie',
-  path: '/sofie',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/sofie.lazy').then((d) => d.Route))
 
 const SignUpLazyRoute = SignUpLazyImport.update({
   id: '/sign-up',
@@ -45,29 +37,23 @@ const ResevereLazyRoute = ResevereLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/resevere.lazy').then((d) => d.Route))
 
-const PhilipLazyRoute = PhilipLazyImport.update({
-  id: '/philip',
-  path: '/philip',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/philip.lazy').then((d) => d.Route))
-
-const MybookingsLazyRoute = MybookingsLazyImport.update({
-  id: '/mybookings',
-  path: '/mybookings',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/mybookings.lazy').then((d) => d.Route))
-
-const LoginLazyRoute = LoginLazyImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/login.lazy').then((d) => d.Route))
-
 const BookcardtestLazyRoute = BookcardtestLazyImport.update({
   id: '/bookcardtest',
   path: '/bookcardtest',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/bookcardtest.lazy').then((d) => d.Route))
+
+const OpretBookingLazyRoute = OpretBookingLazyImport.update({
+  id: '/OpretBooking',
+  path: '/OpretBooking',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/OpretBooking.lazy').then((d) => d.Route))
+
+const MineBookingerLazyRoute = MineBookingerLazyImport.update({
+  id: '/MineBookinger',
+  path: '/MineBookinger',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/MineBookinger.lazy').then((d) => d.Route))
 
 const IndexLazyRoute = IndexLazyImport.update({
   id: '/',
@@ -86,32 +72,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
+    '/MineBookinger': {
+      id: '/MineBookinger'
+      path: '/MineBookinger'
+      fullPath: '/MineBookinger'
+      preLoaderRoute: typeof MineBookingerLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/OpretBooking': {
+      id: '/OpretBooking'
+      path: '/OpretBooking'
+      fullPath: '/OpretBooking'
+      preLoaderRoute: typeof OpretBookingLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/bookcardtest': {
       id: '/bookcardtest'
       path: '/bookcardtest'
       fullPath: '/bookcardtest'
       preLoaderRoute: typeof BookcardtestLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/mybookings': {
-      id: '/mybookings'
-      path: '/mybookings'
-      fullPath: '/mybookings'
-      preLoaderRoute: typeof MybookingsLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/philip': {
-      id: '/philip'
-      path: '/philip'
-      fullPath: '/philip'
-      preLoaderRoute: typeof PhilipLazyImport
       parentRoute: typeof rootRoute
     }
     '/resevere': {
@@ -128,13 +107,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignUpLazyImport
       parentRoute: typeof rootRoute
     }
-    '/sofie': {
-      id: '/sofie'
-      path: '/sofie'
-      fullPath: '/sofie'
-      preLoaderRoute: typeof SofieLazyImport
-      parentRoute: typeof rootRoute
-    }
   }
 }
 
@@ -142,92 +114,76 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
+  '/MineBookinger': typeof MineBookingerLazyRoute
+  '/OpretBooking': typeof OpretBookingLazyRoute
   '/bookcardtest': typeof BookcardtestLazyRoute
-  '/login': typeof LoginLazyRoute
-  '/mybookings': typeof MybookingsLazyRoute
-  '/philip': typeof PhilipLazyRoute
   '/resevere': typeof ResevereLazyRoute
   '/sign-up': typeof SignUpLazyRoute
-  '/sofie': typeof SofieLazyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
+  '/MineBookinger': typeof MineBookingerLazyRoute
+  '/OpretBooking': typeof OpretBookingLazyRoute
   '/bookcardtest': typeof BookcardtestLazyRoute
-  '/login': typeof LoginLazyRoute
-  '/mybookings': typeof MybookingsLazyRoute
-  '/philip': typeof PhilipLazyRoute
   '/resevere': typeof ResevereLazyRoute
   '/sign-up': typeof SignUpLazyRoute
-  '/sofie': typeof SofieLazyRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
+  '/MineBookinger': typeof MineBookingerLazyRoute
+  '/OpretBooking': typeof OpretBookingLazyRoute
   '/bookcardtest': typeof BookcardtestLazyRoute
-  '/login': typeof LoginLazyRoute
-  '/mybookings': typeof MybookingsLazyRoute
-  '/philip': typeof PhilipLazyRoute
   '/resevere': typeof ResevereLazyRoute
   '/sign-up': typeof SignUpLazyRoute
-  '/sofie': typeof SofieLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/MineBookinger'
+    | '/OpretBooking'
     | '/bookcardtest'
-    | '/login'
-    | '/mybookings'
-    | '/philip'
     | '/resevere'
     | '/sign-up'
-    | '/sofie'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/MineBookinger'
+    | '/OpretBooking'
     | '/bookcardtest'
-    | '/login'
-    | '/mybookings'
-    | '/philip'
     | '/resevere'
     | '/sign-up'
-    | '/sofie'
   id:
     | '__root__'
     | '/'
+    | '/MineBookinger'
+    | '/OpretBooking'
     | '/bookcardtest'
-    | '/login'
-    | '/mybookings'
-    | '/philip'
     | '/resevere'
     | '/sign-up'
-    | '/sofie'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
+  MineBookingerLazyRoute: typeof MineBookingerLazyRoute
+  OpretBookingLazyRoute: typeof OpretBookingLazyRoute
   BookcardtestLazyRoute: typeof BookcardtestLazyRoute
-  LoginLazyRoute: typeof LoginLazyRoute
-  MybookingsLazyRoute: typeof MybookingsLazyRoute
-  PhilipLazyRoute: typeof PhilipLazyRoute
   ResevereLazyRoute: typeof ResevereLazyRoute
   SignUpLazyRoute: typeof SignUpLazyRoute
-  SofieLazyRoute: typeof SofieLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
+  MineBookingerLazyRoute: MineBookingerLazyRoute,
+  OpretBookingLazyRoute: OpretBookingLazyRoute,
   BookcardtestLazyRoute: BookcardtestLazyRoute,
-  LoginLazyRoute: LoginLazyRoute,
-  MybookingsLazyRoute: MybookingsLazyRoute,
-  PhilipLazyRoute: PhilipLazyRoute,
   ResevereLazyRoute: ResevereLazyRoute,
   SignUpLazyRoute: SignUpLazyRoute,
-  SofieLazyRoute: SofieLazyRoute,
 }
 
 export const routeTree = rootRoute
@@ -241,38 +197,30 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/MineBookinger",
+        "/OpretBooking",
         "/bookcardtest",
-        "/login",
-        "/mybookings",
-        "/philip",
         "/resevere",
-        "/sign-up",
-        "/sofie"
+        "/sign-up"
       ]
     },
     "/": {
       "filePath": "index.lazy.jsx"
     },
+    "/MineBookinger": {
+      "filePath": "MineBookinger.lazy.jsx"
+    },
+    "/OpretBooking": {
+      "filePath": "OpretBooking.lazy.jsx"
+    },
     "/bookcardtest": {
       "filePath": "bookcardtest.lazy.jsx"
-    },
-    "/login": {
-      "filePath": "login.lazy.jsx"
-    },
-    "/mybookings": {
-      "filePath": "mybookings.lazy.jsx"
-    },
-    "/philip": {
-      "filePath": "philip.lazy.jsx"
     },
     "/resevere": {
       "filePath": "resevere.lazy.jsx"
     },
     "/sign-up": {
       "filePath": "sign-up.lazy.jsx"
-    },
-    "/sofie": {
-      "filePath": "sofie.lazy.jsx"
     }
   }
 }

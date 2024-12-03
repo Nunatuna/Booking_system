@@ -50,7 +50,7 @@ function SignIn() {
         setErrorMessage("Invalid email or password. Please try again.");
       } else {
         setErrorMessage('');
-        navigate({ to: '/philip' }); // Navigate to the index page on successful login
+        navigate({ to: '/OpretBooking' }); // Navigate to the index page on successful login
       }
     } catch (err) {
       console.error("Unexpected error:", err);
