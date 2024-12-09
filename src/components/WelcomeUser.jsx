@@ -25,6 +25,8 @@ const WelcomeUser = () => {
     fetchUser();
   }, [supabase]);
 
+
+  //Supabase client Singleton $WAG 
   return (
     <div style={containerStyle}>
       {displayName ? <h2 style={{ margin: "0px" }}>Velkommen tilbage, {displayName}!</h2> : <p>Ikke logget ind</p>}

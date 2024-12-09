@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Title, Text, Button } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Modal } from '@mantine/core';
@@ -8,12 +8,17 @@ import { DatePickerInput } from '@mantine/dates';
 import { getSupabaseClient } from '../supabase/getSupabaseClient';
 import { space } from 'postcss/lib/list';
 import { Link } from '@tanstack/react-router'; // This is correct import from @tanstack/react-router
+import dayjs from 'dayjs';
 
 
 export default function Lokaler() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [selectedSlot, setSelectedSlot] = useState(null);
+
+  useEffect(() => {
+    console.log(selectedDate)
+  }, [selectedDate])
 
   const styles = {
     container: {
@@ -62,7 +67,9 @@ export default function Lokaler() {
       return;
     }
   
-    const formattedDate = selectedDate.toISOString().split('T')[0]; // Sørg for, at datoen er i 'YYYY-MM-DD'
+    const formattedDate = dayjs(selectedDate).format('YYYY-MM-DD'); 
+    //Gammelt chat gode v
+    //const formattedDate = selectedDate.toISOString().split('T')[0]; // Sørg for, at datoen er i 'YYYY-MM-DD'
     const formattedStartTime = selectedSlot; // Forventet i 'HH:mm' format
   
     // Hent den aktuelle bruger

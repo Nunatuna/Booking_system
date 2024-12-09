@@ -23,7 +23,7 @@ const clickedButtonStyle = {
   background: "#364FC7", // Mørkere baggrund
   color: "#fff",         // Lysere tekst
 };
-
+// Chatgpt
 const TimeslotGenerator = ({ startHour, endHour, interval, selectedSlot, setSelectedSlot }) => {
   const generateTimeslots = () => {
     return Array.from({ length: (endHour - startHour) / interval }, (_, index) => {
