@@ -18,6 +18,7 @@ import { Route as rootRoute } from './routes/__root'
 
 const SignUpLazyImport = createFileRoute('/sign-up')()
 const ResevereLazyImport = createFileRoute('/resevere')()
+const CalendarLazyImport = createFileRoute('/calendar')()
 const BookcardtestLazyImport = createFileRoute('/bookcardtest')()
 const OpretBookingLazyImport = createFileRoute('/OpretBooking')()
 const MineBookingerLazyImport = createFileRoute('/MineBookinger')()
@@ -36,6 +37,12 @@ const ResevereLazyRoute = ResevereLazyImport.update({
   path: '/resevere',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/resevere.lazy').then((d) => d.Route))
+
+const CalendarLazyRoute = CalendarLazyImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/calendar.lazy').then((d) => d.Route))
 
 const BookcardtestLazyRoute = BookcardtestLazyImport.update({
   id: '/bookcardtest',
@@ -93,6 +100,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BookcardtestLazyImport
       parentRoute: typeof rootRoute
     }
+    '/calendar': {
+      id: '/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof CalendarLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/resevere': {
       id: '/resevere'
       path: '/resevere'
@@ -117,6 +131,7 @@ export interface FileRoutesByFullPath {
   '/MineBookinger': typeof MineBookingerLazyRoute
   '/OpretBooking': typeof OpretBookingLazyRoute
   '/bookcardtest': typeof BookcardtestLazyRoute
+  '/calendar': typeof CalendarLazyRoute
   '/resevere': typeof ResevereLazyRoute
   '/sign-up': typeof SignUpLazyRoute
 }
@@ -126,6 +141,7 @@ export interface FileRoutesByTo {
   '/MineBookinger': typeof MineBookingerLazyRoute
   '/OpretBooking': typeof OpretBookingLazyRoute
   '/bookcardtest': typeof BookcardtestLazyRoute
+  '/calendar': typeof CalendarLazyRoute
   '/resevere': typeof ResevereLazyRoute
   '/sign-up': typeof SignUpLazyRoute
 }
@@ -136,6 +152,7 @@ export interface FileRoutesById {
   '/MineBookinger': typeof MineBookingerLazyRoute
   '/OpretBooking': typeof OpretBookingLazyRoute
   '/bookcardtest': typeof BookcardtestLazyRoute
+  '/calendar': typeof CalendarLazyRoute
   '/resevere': typeof ResevereLazyRoute
   '/sign-up': typeof SignUpLazyRoute
 }
@@ -147,6 +164,7 @@ export interface FileRouteTypes {
     | '/MineBookinger'
     | '/OpretBooking'
     | '/bookcardtest'
+    | '/calendar'
     | '/resevere'
     | '/sign-up'
   fileRoutesByTo: FileRoutesByTo
@@ -155,6 +173,7 @@ export interface FileRouteTypes {
     | '/MineBookinger'
     | '/OpretBooking'
     | '/bookcardtest'
+    | '/calendar'
     | '/resevere'
     | '/sign-up'
   id:
@@ -163,6 +182,7 @@ export interface FileRouteTypes {
     | '/MineBookinger'
     | '/OpretBooking'
     | '/bookcardtest'
+    | '/calendar'
     | '/resevere'
     | '/sign-up'
   fileRoutesById: FileRoutesById
@@ -173,6 +193,7 @@ export interface RootRouteChildren {
   MineBookingerLazyRoute: typeof MineBookingerLazyRoute
   OpretBookingLazyRoute: typeof OpretBookingLazyRoute
   BookcardtestLazyRoute: typeof BookcardtestLazyRoute
+  CalendarLazyRoute: typeof CalendarLazyRoute
   ResevereLazyRoute: typeof ResevereLazyRoute
   SignUpLazyRoute: typeof SignUpLazyRoute
 }
@@ -182,6 +203,7 @@ const rootRouteChildren: RootRouteChildren = {
   MineBookingerLazyRoute: MineBookingerLazyRoute,
   OpretBookingLazyRoute: OpretBookingLazyRoute,
   BookcardtestLazyRoute: BookcardtestLazyRoute,
+  CalendarLazyRoute: CalendarLazyRoute,
   ResevereLazyRoute: ResevereLazyRoute,
   SignUpLazyRoute: SignUpLazyRoute,
 }
@@ -200,6 +222,7 @@ export const routeTree = rootRoute
         "/MineBookinger",
         "/OpretBooking",
         "/bookcardtest",
+        "/calendar",
         "/resevere",
         "/sign-up"
       ]
@@ -215,6 +238,9 @@ export const routeTree = rootRoute
     },
     "/bookcardtest": {
       "filePath": "bookcardtest.lazy.jsx"
+    },
+    "/calendar": {
+      "filePath": "calendar.lazy.jsx"
     },
     "/resevere": {
       "filePath": "resevere.lazy.jsx"
