@@ -91,7 +91,7 @@ export default function Lokaler() {
           Dato: formattedDate,       // Datoen i 'YYYY-MM-DD'
           Lokale: selectedRoom.Room_name, // Lokale navn
           Tid: formattedStartTime,  // Start tid som 'HH:mm'
-          Isbooked: true,           // Sætter lokalet som booket
+          Isbooked: true,           // Sætter lokalet som booket boolean
           User: userEmail,          // Email for den aktuelle bruger
         },
       ]);
