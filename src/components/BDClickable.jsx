@@ -22,7 +22,7 @@ const dateStyle = {
   marginTop: "10px",
   textAlign: "right",
 };
-
+//Children 
 export default function BDClickable({ room, children, selectedDate, onClick }) {
   const [isClicked, setIsClicked] = useState(false);
 
@@ -39,7 +39,8 @@ export default function BDClickable({ room, children, selectedDate, onClick }) {
       onClick(room, selectedDate); // Kalder callback med room og selectedDate
     }
   };
-
+//Når vi bruger room.Room_name, antager komponenten, at room er et objekt, som indeholder en egenskab Room_name. 
+//Dette stemmer overens med strukturen i Lokalelister.jsx.
   return (
     <div
       className={`roomItemsStyle ${isClicked ? 'clicked' : ''}`}

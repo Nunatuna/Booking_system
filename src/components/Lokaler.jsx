@@ -56,7 +56,7 @@ export default function Lokaler() {
     { Room_name: 'Mødelokale 5' },
   ];
 
-  //Når funktionen kaldes, opdaterer den to stykker tilstand (state) i komponenten, 
+  //Når funktionen kaldes, opdaterer den to stykker  (state) i komponenten, 
   //Sætter den valgte room/date i tilstanden selectedRoom/selectedDate
   const handleRoomSelect = (room, date) => {
     setSelectedRoom(room);
@@ -75,7 +75,7 @@ export default function Lokaler() {
 
     //Gammelt chat gode v
     //const formattedDate = selectedDate.toISOString().split('T')[0]; // Sørg for, at datoen er i 'YYYY-MM-DD'
-    
+
     const formattedStartTime = selectedSlot; // Forventet i 'HH:mm' format
   
     // Hent den aktuelle bruger
