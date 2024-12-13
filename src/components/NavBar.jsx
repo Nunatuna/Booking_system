@@ -94,11 +94,11 @@ export default function NavBar() {
 
       {/*links*/}
         <div style={styles.child}>
-          <Link to="/philip" style={styles.link}>
+          <Link to="/OpretBooking" style={styles.link}>
             <IconHome stroke={2} width="24" height="24" style={{ marginRight: '8px' }} />
             <Text size="md" fw={600}>Forside</Text>
           </Link>
-          <Link to="/" style={styles.link}>
+          <Link to="/MineBookinger" style={styles.link}>
             <IconUser stroke={2} width="24" height="24" style={{ marginRight: '8px' }} />
             <Text size="md" fw={600}>Mine bookinger</Text>
           </Link>

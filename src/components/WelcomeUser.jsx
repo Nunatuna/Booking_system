@@ -25,7 +25,12 @@ const WelcomeUser = () => {
     fetchUser();
   }, [supabase]);
 
+<<<<<<< HEAD
   // Render the user's display name if they are logged in, otherwise it will write "Ikke logget ind"
+=======
+
+  //Supabase client Singleton $WAG 
+>>>>>>> f34763bfb12a40290ee1893e86555d3916a06d27
   return (
     <div style={containerStyle}>
       {displayName ? <h2 style={{ margin: "0px" }}>Velkommen tilbage, {displayName}!</h2> : <p>Ikke logget ind</p>}

@@ -18,7 +18,7 @@ function SignOutButton({ onSignOut }) {
                 if (onSignOut) {
                     onSignOut(); // Callback for additional actions, like closing a modal
                 }
-                navigate({ to: '/login' }); // Redirect to the login page
+                navigate({ to: '/' }); // Redirect to the login page
             }
         } catch (err) {
             console.error('Unexpected error during sign-out:', err);

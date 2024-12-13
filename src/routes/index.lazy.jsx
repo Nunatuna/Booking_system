@@ -1,19 +1,26 @@
-import { createLazyFileRoute, useRouteContext } from "@tanstack/react-router";
-import MyBookings from "../components/MyBookings"; //Uncomment this line to see My Bookings Component
-import NavBar from '../components/NavBar';
+import * as React from 'react'
+import { createLazyFileRoute } from '@tanstack/react-router'
+import { Button } from '@mantine/core'
+import SignIn from '../components/LogIn'
 
-export const Route = createLazyFileRoute("/")({
-  component: Index,
-});
+const containerStyle = {
+  padding: '1rem 10rem',
+}
 
-function Index() {
-  const context = useRouteContext({ from: "/" });
-  console.log(context);
+export const Route = createLazyFileRoute('/')({
+  component: RouteComponent,
+})
+
+function RouteComponent() {
+  const styles = {
+    navbar: {
+      padding: '20px',
+    },
+  }
 
   return (
-    <>
-      <NavBar />
-      <MyBookings />
-    </>
-  );
+    <div style={containerStyle}>
+      <SignIn />
+    </div>
+  )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Title, Text, Button } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Modal } from '@mantine/core';
@@ -7,13 +7,25 @@ import LokalerTid from './LokalerTid';
 import { DatePickerInput } from '@mantine/dates';
 import { getSupabaseClient } from '../supabase/getSupabaseClient';
 import { space } from 'postcss/lib/list';
+<<<<<<< HEAD
 import { Link } from '@tanstack/react-router';
+=======
+import { Link } from '@tanstack/react-router'; // This is correct import from @tanstack/react-router
+import dayjs from 'dayjs';
+
+>>>>>>> f34763bfb12a40290ee1893e86555d3916a06d27
 
 // useState is set to null as no date, room or timeslot has been seleceted yet
 export default function Lokaler() {
+  //Start tilstandsvariable selectedRoom/Date/Slot og funktion til at opdatere tilstanden setSelected, med start værdi på null
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [selectedSlot, setSelectedSlot] = useState(null);
+
+  //Debugging af selectedDate
+  useEffect(() => {
+    console.log(selectedDate)
+  }, [selectedDate])
 
   const styles = {
     container: {
@@ -40,8 +52,12 @@ export default function Lokaler() {
       width: '617px',
     },
   };
+<<<<<<< HEAD
 
   // Hardcoded array of meeting rooms to choose from :)
+=======
+// Lokale liste er hardcodet ved hjælp af props, kan ændres i fremtiden til Database if needed
+>>>>>>> f34763bfb12a40290ee1893e86555d3916a06d27
   const Lokaleliste = [
     { Room_name: 'Mødelokale 1' },
     { Room_name: 'Mødelokale 2' },
@@ -50,6 +66,8 @@ export default function Lokaler() {
     { Room_name: 'Mødelokale 5' },
   ];
 
+  //Når funktionen kaldes, opdaterer den to stykker  (state) i komponenten, 
+  //Sætter den valgte room/date i tilstanden selectedRoom/selectedDate
   const handleRoomSelect = (room, date) => {
     setSelectedRoom(room);
     setSelectedDate(date);
@@ -63,7 +81,11 @@ export default function Lokaler() {
       return;
     }
   
-    const formattedDate = selectedDate.toISOString().split('T')[0]; // Sørg for, at datoen er i 'YYYY-MM-DD'
+    const formattedDate = dayjs(selectedDate).format('YYYY-MM-DD'); 
+
+    //Gammelt chat gode v
+    //const formattedDate = selectedDate.toISOString().split('T')[0]; // Sørg for, at datoen er i 'YYYY-MM-DD'
+
     const formattedStartTime = selectedSlot; // Forventet i 'HH:mm' format
   
     // Hent den aktuelle bruger, så vi kan sende deres emailaddresse med bookingen til databasen
@@ -85,7 +107,7 @@ export default function Lokaler() {
           Dato: formattedDate,      // Datoen i 'YYYY-MM-DD'
           Lokale: selectedRoom.Room_name, // Lokale navn
           Tid: formattedStartTime,  // Start tid som 'HH:mm'
-          Isbooked: true,           // Sætter lokalet som booket
+          Isbooked: true,           // Sætter lokalet som booket boolean
           User: userEmail,          // Email for den aktuelle bruger
         },
       ]);
@@ -172,7 +194,7 @@ export default function Lokaler() {
          <Text><b>Tid:</b> {selectedSlot ? selectedSlot : 'Ingen valgt'}</Text>
           <div style={modalStyles.container}>
             <Button variant="filled" color="#748FFC" size="lg" radius="xl" onClick={close}>Fortryd</Button>
-            <Link to="/"><Button variant="filled" color="#364FC7" size="lg" radius="xl" onClick={handleSubmit}>Bekræft</Button></Link>
+            <Link to="/MineBookinger"><Button variant="filled" color="#364FC7" size="lg" radius="xl" onClick={handleSubmit}>Bekræft</Button></Link>
           </div>
       </Modal>
       <Button variant="filled" color="#748FFC" size="lg" radius="xl" onClick={open}>Book</Button>

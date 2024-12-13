@@ -96,8 +96,6 @@ const MyBookings = () => {
           year: 'numeric', // Inkluder året
           month: '2-digit',
           day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
           hour12: false, // 24-timers format
         });
       };
@@ -112,7 +110,7 @@ const MyBookings = () => {
                             <Group key={room.id} style={roomItemsStyle}>
                                 <div>
                                     <Text c="#364FC7" fw={500} size="md">{room.Lokale}</Text>
-                                    <Text fw={400} size="md">{formatDateTime(room.Dato)}</Text>
+                                    <Text fw={400} size="md">{formatDateTime(room.Dato)}, kl.{room.Tid}</Text>
                                 </div>
                                 <CancelBookingBtn roomId={room.id} onCancel={removeRoom} />
                             </Group>
