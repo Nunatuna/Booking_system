@@ -18,12 +18,12 @@ function RootRouteWithLayout() {
   return (
     <>
       <div style={{ display: "flex", gap: "20px"}}>
-        <Link to="/">Home</Link>
+        {/* <Link to="/">Home</Link>
         <Link to="/OpretBooking">OpretBooking</Link>
         <Link to="/resevere">resevere</Link>
         <Link to="/">login</Link>
         <Link to="/sign-up">Sign Up</Link>
-        <Link to="/MineBookinger">MineBookinger</Link>
+        <Link to="/MineBookinger">MineBookinger</Link> */}
       </div> 
       <Outlet />
     </>
