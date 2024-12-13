@@ -7,9 +7,9 @@ import LokalerTid from './LokalerTid';
 import { DatePickerInput } from '@mantine/dates';
 import { getSupabaseClient } from '../supabase/getSupabaseClient';
 import { space } from 'postcss/lib/list';
-import { Link } from '@tanstack/react-router'; // This is correct import from @tanstack/react-router
+import { Link } from '@tanstack/react-router';
 
-
+// useState is set to null as no date, room or timeslot has been seleceted yet
 export default function Lokaler() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedRoom, setSelectedRoom] = useState(null);
@@ -41,6 +41,7 @@ export default function Lokaler() {
     },
   };
 
+  // Hardcoded array of meeting rooms to choose from :)
   const Lokaleliste = [
     { Room_name: 'Mødelokale 1' },
     { Room_name: 'Mødelokale 2' },
@@ -57,7 +58,7 @@ export default function Lokaler() {
   const supabase = getSupabaseClient();  // Initialiser Supabase-klienten
   console.log(supabase);
   const handleSubmit = async () => {
-    if (!selectedDate || !selectedRoom || !selectedSlot) {
+    if (!selectedDate || !selectedRoom || !selectedSlot) { // makes sure that all fields are selected
       alert('Alle oplysninger skal vælges!');
       return;
     }
@@ -65,7 +66,7 @@ export default function Lokaler() {
     const formattedDate = selectedDate.toISOString().split('T')[0]; // Sørg for, at datoen er i 'YYYY-MM-DD'
     const formattedStartTime = selectedSlot; // Forventet i 'HH:mm' format
   
-    // Hent den aktuelle bruger
+    // Hent den aktuelle bruger, så vi kan sende deres emailaddresse med bookingen til databasen
     const { data: { user }, error: userError } = await supabase.auth.getUser();
     
     if (userError || !user) {
@@ -81,7 +82,7 @@ export default function Lokaler() {
       .from('MeetingRooms') // Navnet på din tabel i Supabase
       .insert([
         {
-          Dato: formattedDate,       // Datoen i 'YYYY-MM-DD'
+          Dato: formattedDate,      // Datoen i 'YYYY-MM-DD'
           Lokale: selectedRoom.Room_name, // Lokale navn
           Tid: formattedStartTime,  // Start tid som 'HH:mm'
           Isbooked: true,           // Sætter lokalet som booket
@@ -133,8 +134,9 @@ export default function Lokaler() {
         <Text style={{ marginTop: '20px', color: '#4C6EF5' }}>
           Valgt dato: {selectedDate ? selectedDate.toLocaleDateString() : 'Ingen valgt'}
         </Text>
+        
         <div>
-          {Lokaleliste.map((room, index) => (
+          {Lokaleliste.map((room, index) => ( // The meeting rooms gets rendered here :)
             <BDClickable
               key={index}
               room={room}

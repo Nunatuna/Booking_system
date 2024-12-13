@@ -4,11 +4,6 @@ import  ConfirmMeetingBtn   from './ConfirmMeetingBtn';
 
 
 function Bookcard() {
-    const loadingStyle = {
-        display: "flex",
-        justifyContent: "center",
-        marginTop: "200px",
-    };
     
     const containerStyle = {
         display: "flex",

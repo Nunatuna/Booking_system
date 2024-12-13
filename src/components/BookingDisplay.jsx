@@ -32,7 +32,7 @@ const roomLabelStyle = {
 
 export default function BookingDisplay({ room, children }) {
 
-     // Hjælpe funktion to at definere dat og tid i dansk  GPT
+     // Hjælpe funktion to at definere dato og tid i dansk - Tak Chat <3
      const formatDateTime = (dateTime) => {
         const date = new Date(dateTime);
         return date.toLocaleString('da-DK', { 

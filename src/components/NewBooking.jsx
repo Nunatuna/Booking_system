@@ -13,10 +13,10 @@ function NyBooking() {
     // velkommen tilbage er replaceable, Nybooking her 
     <div style={styles.container}>
       <div style={styles.bookingCard}>
-      <Title style={styles.text} order={2}>Ny booking?</Title>
-      <Link to="/resevere">
-      <Button style={styles.button} onClick={handleBookingClick} variant="filled" color="indigo" size="lg" radius="xl">BOOK</Button>
-      </Link>
+        <Title style={styles.text} order={2}>Ny booking?</Title>
+        <Link to="/resevere">
+          <Button style={styles.button} onClick={handleBookingClick} variant="filled" color="indigo" size="lg" radius="xl">BOOK</Button>
+        </Link>
       </div>
     </div>
     

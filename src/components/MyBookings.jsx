@@ -66,7 +66,7 @@ const MyBookings = () => {
                 const { data, error } = await supabase
                     .from("MeetingRooms")
                     .select("id, Lokale, Dato, Tid, Isbooked")
-                    .ilike("User", user.email); // ilike performs case-insensitive match
+                    .ilike("User", user.email); // ilike performs case-insensitive match (not needed anymore actually because email is sent with booking)
 
                 if (error) {
                     console.error("Error fetching meeting rooms:", error);

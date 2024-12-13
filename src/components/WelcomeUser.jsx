@@ -18,13 +18,14 @@ const WelcomeUser = () => {
 
       if (data.user) {
         const userDisplayName = data.user.user_metadata.display_name;
-        setDisplayName(userDisplayName || "Guest");
+        setDisplayName(userDisplayName || "");
       }
     };
 
     fetchUser();
   }, [supabase]);
 
+  // Render the user's display name if they are logged in, otherwise it will write "Ikke logget ind"
   return (
     <div style={containerStyle}>
       {displayName ? <h2 style={{ margin: "0px" }}>Velkommen tilbage, {displayName}!</h2> : <p>Ikke logget ind</p>}
